@@ -1,0 +1,11 @@
+---
+layout: default
+modal-id: 2
+date: 2024-03-19
+img: cnn.png
+alt: image-alt
+project-date: November 2022 - present
+client: Day job
+category: Python, Pandas, D3
+description: I'm a senior editor on CNN's data and graphics team. Much of my job is behind the scenes, building data pipelines, leading projects and editing others' work. But some stories lives <a href="https://www.cnn.com/profiles/matt-stiles">here</a>.
+---

@@ -1,0 +1,53 @@
+{% include css/bootstrap.min.css %}
+{% include css/main.css %}
+
+.modal-descrption {
+    text-align: left;
+}
+
+hr.star-light,
+hr.star-primary {
+    margin: 25px auto 30px;
+    padding: 0;
+    max-width: 250px;
+    border: 0;
+    border-top: solid 0px;
+    text-align: center;
+    overflow: visible;
+}
+
+hr.star-light:after,
+hr.star-primary:after {
+    content: "\f201";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+.navbar-fixed-top .navbar-brand {
+    font-size: 1.5em;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+}
+
+.link 
+a,
+a.hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+    color: #{{ site.color.about-link }};
+}
+
+.link a {
+    text-decoration: underline;
+}
+
+h2.contact  {
+    margin-bottom: 50px;
+}

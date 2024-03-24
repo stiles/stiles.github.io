@@ -1,0 +1,76 @@
+# Site settings
+title: Matt Stiles
+home: Howdy.
+email: mattstiles@gmail.com
+url: https://stiles.github.io
+description: "Matt Stiles, LA-based data journalist"
+keywords: "data journalism, data science, python, data visualization"
+skills: "I'm a data journalist based in Los Angeles."
+meta_author: Stiles Matt
+
+# Google webmaster tools
+google_verify:
+
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+bing_verify:
+
+# Contact form:
+# - static : pass through formspree.io to validate email sending
+# - disqus : replace contact form by disqus thread
+# - comment the line below if you want to stick with the default PHP contact form
+contact: static
+
+# If you use disqus you need disqus shortname
+# https://help.disqus.com/customer/portal/articles/466208
+disqus_shortname: myshortname
+
+# Color settings (hex-codes without the leading hash-tag)
+color:
+  primary: 7F9F80 
+  primary-rgb: "18, 64, 118" 
+  secondary: 233140
+  secondary-dark: 17202a
+  about-link: ffffff
+
+# Footer settings
+footer:
+  copyright: Matt Stiles
+  location: Los Angeles
+  social: Social stuff
+  credits: Credits
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
+social:
+  - title: github
+    url: http://github.com/stiles
+  - title: twitter
+    url: http://twitter.com/stiles
+  - title: tiktok
+    url: https://www.tiktok.com/@mattystiles
+  - title: linkedin
+    url: https://www.linkedin.com/in/matthustiles
+
+# Postal address (add as many lines as necessary)
+address:
+  - line: mattstiles@gmail.com
+  - line: Los Angeles, CA
+
+# Credits content
+credits: 'Made with Jekyll'
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+#for posts
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: ""
+
+remote_theme: jeromelachaud/freelancer-theme
+
+plugins:
+  - jekyll-remote-theme
