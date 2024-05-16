@@ -1,0 +1,11 @@
+---
+layout: default
+modal-id: 2
+date: 2024-05-15
+img: dodgers.png
+alt: image-alt
+project-date: Ongoing
+client: Personal project
+category: Python, Pandas, D3
+description: This is an automated data pipeline that fetches, processes and stores LA Dodgers standings and game-by-game performance statistics, comparing it by season to 1958. The data and code are stored in an <a href="https://github.com/stiles/dodgers/blob/main/README.md">open repo on Github</a> and displayed in a public dashboard with key figures and visualizations at <a href="https://DodgersData.bot">DodgersData.bot</a>. 
+---
