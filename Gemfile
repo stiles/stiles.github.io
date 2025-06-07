@@ -3,3 +3,4 @@ gemspec
 
 gem "jekyll", "~> 4.3"
 gem "jekyll-remote-theme"
+gem "csv"

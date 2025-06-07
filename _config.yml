@@ -62,13 +62,13 @@ credits: 'Made with Jekyll'
 markdown: kramdown
 permalink: pretty
 
-#for posts
+# for posts
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
-      permalink: ""
+      permalink: "/posts/:title/"
 
 remote_theme: jeromelachaud/freelancer-theme
 
