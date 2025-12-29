@@ -1,5 +1,6 @@
 ---
 layout: default
+title: LA Street Trees
 modal-id: 3
 date: 2024-03-22
 img: trees.png

@@ -1,52 +1,29 @@
 <!-- Contact Section -->
-<section id="contact">
+<section id="contact" class="contact-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="contact">Contact</h2>
-        <br>
-        <!-- <hr class="star-primary"> -->
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-        <form action="//formspree.io/f/xrgnapew" method="POST" name="sentMessage" id="contactForm" novalidate>
-          <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-              <label for="name">Your name</label>
-              <input type="text" name="name" class="form-control" placeholder="Name" id="name" required
-                data-validation-required-message="Enter your name.">
-              <p class="help-block text-danger"></p>
+      <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+        <div class="contact-content">
+          <span class="section-label">Hello</span>
+          <h2 class="contact-title">Let's talk</h2>
+          <p class="contact-subtitle">Have a question? Want to work together? Send me a message.</p>
+          
+          <form action="//formspree.io/f/xrgnapew" method="POST" name="sentMessage" id="contactForm" class="contact-form" novalidate>
+            <div class="form-group-modern">
+              <input type="text" name="name" class="form-input-modern" placeholder="Your name" id="name" required>
             </div>
-          </div>
-          <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-              <label for="email">Email</label>
-              <input type="email" name="_replyto" class="form-control" placeholder="Email Address" id="email" required
-                data-validation-required-message="Enter your email address.">
-              <p class="help-block text-danger"></p>
+            <div class="form-group-modern">
+              <input type="email" name="_replyto" class="form-input-modern" placeholder="Email address" id="email" required>
             </div>
-          </div>
-          <div>
             <input type="hidden" name="_subject" value="New email from your website!">
             <input type="text" name="_gotcha" style="display:none" />
-          </div>
-          <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-              <label for="message">Message</label>
-              <textarea rows="5" name="message" class="form-control" placeholder="Message" id="message" required
-                data-validation-required-message="Enter a message."></textarea>
-              <p class="help-block text-danger"></p>
+            <div class="form-group-modern">
+              <textarea rows="4" name="message" class="form-input-modern form-textarea" placeholder="Your message" id="message" required></textarea>
             </div>
-          </div>
-          <br>
-          <div id="success"></div>
-          <div class="row">
-            <div class="form-group col-xs-12">
-              <button type="submit" class="btn btn-success btn-lg">Send</button>
-            </div>
-          </div>
-        </form>
+            <div id="success"></div>
+            <button type="submit" class="btn-submit">Send message <i class="fa fa-paper-plane"></i></button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

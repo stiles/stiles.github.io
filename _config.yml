@@ -1,5 +1,6 @@
 # Site settings
 title: Matt Stiles
+domain: mattstiles.me
 home: Howdy.
 email: mattstiles@gmail.com
 url: https://mattstiles.me
@@ -74,3 +75,5 @@ remote_theme: jeromelachaud/freelancer-theme
 
 plugins:
   - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-seo-tag

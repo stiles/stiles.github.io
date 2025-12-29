@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Locations Collection
 modal-id: 1
 date: 2024-03-12
 img: locations2.png

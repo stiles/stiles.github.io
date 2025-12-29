@@ -1,14 +1,26 @@
-<!-- Header -->
-<header>
+<!-- Header with About -->
+<header class="header-redesign" id="about">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <img class="img-responsive" src="img/profile.png" alt="profile-pic" />
-        <div class="intro-text">
-          <span class="name">{{ site.home }}</span>
-          <hr class="star-light" />
-          <span class="skills">{{ site.skills }}</span>
+    <div class="header-hero">
+      <div class="hero-intro">
+        <img class="profile-image" src="img/profile.png" alt="Matt Stiles" />
+        <span class="greeting">{{ site.home }}</span>
+        <p class="tagline">{{ site.skills }}</p>
+      </div>
+    </div>
+    
+    <div class="header-about">
+      <div class="about-columns">
+        <div class="about-col">
+          <p>I'm a journalist with 15 years of <a href="https://www.linkedin.com/in/matthustiles/">experience</a> writing, coding and editing data-driven and visual stories. I've worked at NPR, The Texas Tribune, the <em>Wall Street Journal</em> and the <em>Los Angeles Times</em>. I'm now a <a href="https://www.cnn.com/profiles/matt-stiles">senior editor</a> on CNN's visuals team. Read my recent <a href="https://authory.com/MattStiles">stories</a>.</p>
         </div>
+        <div class="about-col">
+          <p>My work involves storytelling with data, code and visuals — typically with Python and JavaScript. In 2012, I founded <a href="https://thedailyviz.com/">The Daily Viz</a>, a retired site where I created and curated data stories. I also <a href="https://dodgersdata.bot/">tinker</a> with lots of <a href="https://github.com/stiles/locations/">side</a> <a href="https://github.com/stiles/la-trees">projects</a> and <a href="https://github.com/stiles/pyfr24">open-source</a> <a href="https://github.com/stiles/ezesri">software</a>.</p>
+        </div>
+      </div>
+      <div class="header-cta">
+        <a href="#portfolio" class="btn-header-primary">View projects</a>
+        <a href="#contact" class="btn-header-secondary">Get in touch</a>
       </div>
     </div>
   </div>
