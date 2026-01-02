@@ -6,7 +6,7 @@ date: 2025-01-01
 img: pyfr24.png
 alt: pyfr24 - Flightradar24 Python client
 project-date: 2025
-client: Open source
+client: Open source software
 category: Python, CLI, API
 description: A Python client for the Flightradar24 API with CLI support. Fetch, plot and analyze flight data with ease. Includes smart export for investigating flights by number and date, publication-ready visualizations, and multiple export formats. <a href="https://github.com/stiles/pyfr24" target="_blank">View on GitHub</a> | <a href="https://pyfr24.readthedocs.io/" target="_blank">Documentation</a>
 ---

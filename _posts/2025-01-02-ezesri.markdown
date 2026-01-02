@@ -6,7 +6,7 @@ date: 2025-01-02
 img: ezesri.png
 alt: ezesri - Esri REST API Python package
 project-date: 2025
-client: Open source
+client: Open source software
 category: Python, GIS, CLI
 description: A lightweight Python package for extracting data and metadata from Esri REST API endpoints. Provides an API and CLI for exporting feature layers, with support for pagination and filtering. <a href="https://github.com/stiles/ezesri" target="_blank">View on GitHub</a>
 ---
