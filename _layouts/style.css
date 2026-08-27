@@ -27,18 +27,19 @@
 
 :root {
   --primary: #{{ site.color.primary }};
-  --primary-deep: #5a7a5b;
+  --primary-deep: #{{ site.color.primary-deep }};
   --ink: #{{ site.color.secondary }};
   --ink-deep: #{{ site.color.secondary-dark }};
 
-  --text: #2f3438;
-  --text-soft: #5f6670;
-  --text-faint: #868d95;
-  --rule: #e3e7ea;
-  --rule-strong: #ccd3d8;
+  --text: #364153;
+  --text-soft: #4a5565;
+  --text-faint: #6a7282;
+  --rule: #e5e7eb;
+  --rule-strong: #d1d5dc;
   --paper: #ffffff;
-  --paper-soft: #fafafa;
-  --paper-card: #fbfbfa;
+  /* Warm off-white rather than grey, following moundcli.com. */
+  --paper-soft: #f7f5f0;
+  --paper-card: #faf9f5;
 
   --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
@@ -302,7 +303,7 @@ section {
   margin: 0;
   font-size: var(--step-1);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.92);
+  color: #fff;
 }
 
 .about {
@@ -324,7 +325,7 @@ section {
   margin: 0;
   font-size: var(--step-0);
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
+  color: #fff;
 }
 
 .about-columns a {
@@ -429,6 +430,12 @@ section {
   margin: 0;
   font-size: var(--step-4);
   letter-spacing: -0.025em;
+}
+
+.section-head p {
+  max-width: 46ch;
+  margin: 12px auto 0;
+  color: var(--text-soft);
 }
 
 /* -------------------------------------------------------------- work grid */
@@ -876,7 +883,8 @@ section {
 .field textarea:focus {
   outline: 0;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(127, 159, 128, 0.2);
+  box-shadow: 0 0 0 3px rgba(61, 129, 98, 0.22);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
 }
 
 /* Native constraint validation replaced jqBootstrapValidation. :user-invalid

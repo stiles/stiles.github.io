@@ -28,9 +28,12 @@ disqus_shortname: myshortname
 # Color settings (hex codes, no leading hash). These feed the CSS custom
 # properties in _layouts/style.css, so a palette change is a one-file edit.
 color:
-  primary: 7F9F80
-  secondary: 233140
-  secondary-dark: 17202a
+  # Signal green sampled from the chart dots in Mound's own plots, so the site
+  # and the graphics palette share a hue. Ink and greys follow moundcli.com.
+  primary: 3D8162
+  primary-deep: 30654D
+  secondary: 101828
+  secondary-dark: 0A0F1C
 
 # Footer settings
 footer:
