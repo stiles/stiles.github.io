@@ -1,9 +1,16 @@
+{% if page.title %}
+  {% assign page_title = page.title | append: " · " | append: site.title %}
+{% else %}
+  {% assign page_title = site.title | append: " | Data Journalist" %}
+{% endif %}
+{% assign page_description = page.description | default: site.description %}
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ site.title }} | Data Journalist</title>
-  <meta name="viewport" content="width=device-width">
-  <meta name="description" content="{{ site.description }}">
+  <title>{{ page_title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page_description }}">
   <meta name="keywords" content="{{ site.keywords }}" />
   {% if site.meta_author %}
   <meta name="author" content="{{ site.meta_author }}">{% endif %}
@@ -12,11 +19,13 @@
   <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
 
   <!-- OpenGraph meta tags -->
-  <meta property="og:title" content="{{ site.title }} | Data Journalist">
-  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:image" content="{{ site.url }}/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="{{ site.title }}">
   <meta property="og:locale" content="en_US">
 
@@ -24,8 +33,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@stiles">
   <meta name="twitter:creator" content="@stiles">
-  <meta name="twitter:title" content="{{ site.title }} | Data Journalist">
-  <meta name="twitter:description" content="{{ site.description }}">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description }}">
   <meta name="twitter:image" content="{{ site.url }}/img/og-image.png">
 
   <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
