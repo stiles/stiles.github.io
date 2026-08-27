@@ -1,4 +1,5 @@
 <!-- Portfolio Grid Section -->
+{%- assign featured = site.data.projects | where: "featured", true | first -%}
 <section id="portfolio">
   <div class="container portfolio-flex-grid">
     <div class="row">
@@ -7,24 +8,83 @@
         <h2 class="section-title">Projects</h2>
       </div>
     </div>
+
+    {% if featured %}
+    <div class="featured-card">
+      <div class="featured-text">
+        <span class="featured-eyebrow">Latest</span>
+        <h3 class="featured-title">{{ featured.title }}</h3>
+        {% if featured.install %}
+        <p class="featured-install"><code>{{ featured.install }}</code></p>
+        {% endif %}
+        <p class="featured-blurb">{{ featured.blurb }}</p>
+        {% if featured.tools %}
+        <div class="modal-tools">
+          {% for tool in featured.tools %}<span class="tool-tag">{{ tool }}</span>{% endfor %}
+        </div>
+        {% endif %}
+        <p class="featured-links">
+          {% if featured.url %}<a href="{{ featured.url }}" target="_blank" rel="noopener">Visit site <i
+              class="fa fa-arrow-right"></i></a>{% endif %}
+          {% if featured.repo %}<a href="{{ featured.repo }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+          {% if featured.writeup %}<a href="{{ featured.writeup }}" target="_blank" rel="noopener">Write-up</a>{% endif %}
+        </p>
+      </div>
+      <div class="featured-visual">
+        {% if featured.terminal_meta %}
+        <div class="terminal-meta">{{ featured.terminal_meta }}</div>
+        {% endif %}
+        <pre class="terminal-block"><code>{{ featured.terminal | escape }}</code></pre>
+        {% if featured.caption %}
+        <p class="terminal-caption">{{ featured.caption }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% for bucket in site.data.buckets %}
+    {%- assign items = site.data.projects | where: "bucket", bucket.key | where_exp: "p", "p.featured != true" -%}
+    {%- comment -%}
+    Cards with screenshots first, text-only cards after, so the text cards group
+    into a tidy trailing block instead of punching holes in the image rows.
+    {%- endcomment -%}
+    {%- assign with_img = items | where_exp: "p", "p.img" -%}
+    {%- assign without_img = items | where_exp: "p", "p.img == nil" -%}
+    {%- assign ordered = with_img | concat: without_img -%}
+    {% if ordered.size > 0 %}
+    <h3 class="bucket-title">{{ bucket.title }}</h3>
     <div class="portfolio-flex-row">
-      {% for post in site.posts %}
+      {% for project in ordered %}
+      {%- assign slug = project.title | slugify -%}
       <div class="portfolio-flex-item portfolio-item">
-        <a href="#portfolioModal-{{ post.modal-id }}" class="portfolio-link" data-toggle="modal">
+        <a href="#portfolioModal-{{ slug }}" class="portfolio-link" data-toggle="modal">
+          {% if project.img %}
           <div class="portfolio-image-wrapper">
-            <img src="img/portfolio/{{ post.img }}" class="img-responsive" alt="{{ post.alt }}">
+            {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
             <div class="portfolio-overlay">
               <span class="portfolio-view-label">View project <i class="fa fa-arrow-right"></i></span>
             </div>
           </div>
           <div class="portfolio-info">
-            <h3 class="portfolio-title">{{ post.title }}</h3>
-            <span class="portfolio-category">{{ post.client }}</span>
+            <h4 class="portfolio-title">{{ project.title }}</h4>
+            <span class="portfolio-category">{{ project.tools | join: ", " }}</span>
+            {% if project.note %}<span class="portfolio-note">{{ project.note }}</span>{% endif %}
           </div>
+          {% else %}
+          <div class="portfolio-textcard">
+            <h4 class="portfolio-title">{{ project.title }}</h4>
+            <p class="portfolio-textcard-blurb">{{ project.blurb | strip_html | truncate: 140 }}</p>
+            <div class="portfolio-textcard-foot">
+              <span class="portfolio-category">{{ project.tools | join: ", " }}</span>
+              {% if project.note %}<span class="portfolio-note">{{ project.note }}</span>{% endif %}
+            </div>
+          </div>
+          {% endif %}
         </a>
       </div>
       {% endfor %}
     </div>
+    {% endif %}
+    {% endfor %}
   </div>
 </section>
-

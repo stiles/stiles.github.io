@@ -1,7 +1,9 @@
 <!-- Portfolio Modals -->
-{% for post in site.posts %}
-<div class="portfolio-modal modal fade" id="portfolioModal-{{ post.modal-id }}" tabindex="-1" role="dialog"
-  aria-hidden="true">
+{% for project in site.data.projects %}
+{% unless project.featured %}
+{%- assign slug = project.title | slugify -%}
+<div class="portfolio-modal modal fade" id="portfolioModal-{{ slug }}" tabindex="-1" role="dialog" aria-hidden="true"
+  aria-labelledby="portfolioModalLabel-{{ slug }}">
   <div class="modal-content">
     <button type="button" class="close-modal-btn" data-dismiss="modal" aria-label="Close">
       <i class="fa fa-times"></i>
@@ -10,30 +12,38 @@
       <div class="row">
         <div class="col-lg-10 col-lg-offset-1">
           <div class="modal-body modal-body-redesign">
-            <div class="modal-layout">
+            <div class="modal-layout{% unless project.img %} modal-layout-textonly{% endunless %}">
+              {% if project.img %}
               <div class="modal-image-col">
-                <img src="img/portfolio/{{ post.img }}" class="img-responsive" alt="{{ post.alt }}">
+                {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
               </div>
+              {% endif %}
               <div class="modal-text-col">
+                {% if project.note %}
                 <div class="modal-meta-tags">
-                  {% if post.client %}
-                  <span class="meta-tag meta-tag-type">{{ post.client }}</span>
-                  {% endif %}
-                  {% if post.project-date %}
-                  <span class="meta-tag meta-tag-date">{{ post.project-date }}</span>
-                  {% endif %}
+                  <span class="meta-tag meta-tag-note">{{ project.note }}</span>
                 </div>
-                <h2 class="modal-title">{{ post.title }}</h2>
-                {% if post.description %}
-                <p class="modal-description">{{ post.description }}</p>
                 {% endif %}
-                {% if post.category %}
+                <h2 class="modal-title" id="portfolioModalLabel-{{ slug }}">{{ project.title }}</h2>
+                {% if project.install %}
+                <p class="featured-install"><code>{{ project.install }}</code></p>
+                {% endif %}
+                {% if project.blurb %}
+                <p class="modal-description">{{ project.blurb }}</p>
+                {% endif %}
+                {% if project.tools %}
                 <div class="modal-tools">
-                  {% assign tools = post.category | split: ", " %}
-                  {% for tool in tools %}
-                  <span class="tool-tag">{{ tool }}</span>
-                  {% endfor %}
+                  {% for tool in project.tools %}<span class="tool-tag">{{ tool }}</span>{% endfor %}
                 </div>
+                {% endif %}
+                {% if project.url or project.repo or project.writeup %}
+                <p class="modal-links">
+                  {% if project.url %}<a href="{{ project.url }}" target="_blank" rel="noopener">Visit site <i
+                      class="fa fa-arrow-right"></i></a>{% endif %}
+                  {% if project.repo %}<a href="{{ project.repo }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
+                  {% if project.writeup %}<a href="{{ project.writeup }}" target="_blank"
+                    rel="noopener">Write-up</a>{% endif %}
+                </p>
                 {% endif %}
               </div>
             </div>
@@ -43,4 +53,5 @@
     </div>
   </div>
 </div>
+{% endunless %}
 {% endfor %}

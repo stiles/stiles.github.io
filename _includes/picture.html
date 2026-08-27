@@ -1,0 +1,13 @@
+{%- comment -%}
+Serves WebP with a JPEG fallback. Pass the extensionless base name from _data/projects.yml.
+
+  {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
+{%- endcomment -%}
+{%- assign webp = '/img/portfolio/' | append: include.img | append: '.webp' | relative_url -%}
+{%- assign jpg = '/img/portfolio/' | append: include.img | append: '.jpg' | relative_url -%}
+<picture>
+  <source type="image/webp" srcset="{{ webp }}">
+  <img src="{{ jpg }}" class="{{ include.class | default: 'img-responsive' }}" alt="{{ include.alt }}"
+    {% if include.w %}width="{{ include.w }}"{% endif %} {% if include.h %}height="{{ include.h }}"{% endif %}
+    {% if include.lazy %}loading="lazy" decoding="async"{% endif %}>
+</picture>

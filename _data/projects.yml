@@ -1,0 +1,243 @@
+# Work grid. Buckets render in the order set by _data/buckets.yml.
+#
+# Fields:
+#   title       required
+#   blurb       required, one sentence
+#   bucket      required, must match a key in buckets.yml
+#   img         optional, extensionless base name in img/portfolio/.
+#               Cards without one render text-only.
+#   w, h        required when img is set, so the markup can reserve space
+#   alt         required when img is set
+#   install     optional, shown as a mono install line
+#   url         optional, the live thing
+#   repo        optional, GitHub
+#   writeup     optional, a post explaining how it works
+#   note        optional, short status line shown on the card
+#   featured    optional, true for the one lede card
+#   terminal    optional, replaces the image with a code block (featured only)
+#   caption     optional, explains the terminal block
+#   tools       optional, list
+
+# ---------------------------------------------------------------- featured
+- title: Mound
+  featured: true
+  bucket: other-people-use
+  install: pip install mound
+  blurb: >-
+    Retrieves, analyzes and visualizes MLB pitch-level data from the command line
+    or a few lines of Python. Start from a player's name — no MLB IDs to look up,
+    no undocumented APIs to learn.
+  caption: >-
+    One start, one table. The four-seamer lives in the zone and gets missed when
+    hitters swing at it; the splitter's whole job is to be chased below it, and it
+    was, 57.9% of the time.
+  # TODO: confirm the date and opponent for game 825051 so the block reads as a
+  # specific game rather than stale output.
+  terminal_meta: "Roki Sasaki, game 825051"
+  terminal: |
+    $ mound arsenal "Roki Sasaki" --game 825051
+                        pitches  usage%  strike%  whiff%  chase%  velo  spin    hb   ivb
+    four-seam fastball       35    40.7     57.1    27.3     6.2  98.8  2427  11.2  16.9
+    splitter                 32    37.2     81.2    13.6    57.9  90.2   868   5.3   1.0
+    slider                   14    16.3     57.1    40.0    33.3  87.1  2099   3.0   0.1
+    forkball                  5     5.8     60.0    50.0     0.0  88.2   758   2.8  -2.0
+  url: https://www.moundcli.com
+  repo: https://github.com/stiles/mound
+  writeup: https://www.moundcli.com/examples/ohtani-spin-chase
+  tools: [Python, CLI]
+
+# ------------------------------------------------- things other people use
+- title: ezesri
+  bucket: other-people-use
+  install: pip install ezesri
+  blurb: >-
+    Pulls data and metadata out of Esri REST endpoints — the format most government
+    GIS portals publish in — and writes it to GeoJSON, Shapefile, GeoPackage or
+    GeoParquet.
+  img: ezesri
+  w: 900
+  h: 506
+  alt: The ezesri web app, with a field for pasting an Esri REST layer URL
+  url: https://www.ezesri.com
+  repo: https://github.com/stiles/ezesri
+  writeup: https://medium.com/@stiles/unlock-troves-of-mapping-data-with-ezesri-a-python-package-for-exploring-and-extracting-esri-0fec4c7df2fa
+  tools: [Python]
+
+- title: streetview-dl
+  bucket: other-people-use
+  install: pip install streetview-dl
+  blurb: >-
+    Finds and downloads full-resolution Google Street View panoramas from a URL or
+    a pair of coordinates, including historical captures of the same spot.
+  img: streetview-dl
+  w: 900
+  h: 506
+  alt: Street View panorama of the Sixth Street Viaduct in Los Angeles
+  repo: https://github.com/stiles/streetview-dl
+  writeup: https://medium.com/@stiles/download-high-resolution-google-street-view-panoramas-in-the-command-line-a800ef16f270
+  tools: [Python, CLI]
+
+- title: pyfr24
+  bucket: other-people-use
+  install: pip install pyfr24
+  blurb: >-
+    A Python client and command-line tool for the Flightradar24 API. Start with a
+    flight number, end with a plotted track and a table you can analyze.
+  img: pyfr24
+  w: 900
+  h: 506
+  alt: A pyfr24 plot tracing a single flight path
+  url: https://pyfr24.readthedocs.io
+  repo: https://github.com/stiles/pyfr24
+  writeup: https://medium.com/@stiles/from-flight-number-to-rich-data-using-pyfr24-for-aviation-analysis-10f8124f80f1
+  tools: [Python, CLI]
+
+- title: flight-tracer
+  bucket: other-people-use
+  install: pip install flight-tracer
+  blurb: >-
+    Fetches, stores and maps aircraft positions from ADS-B Exchange, built for
+    following one tail number over weeks rather than watching a single flight.
+  img: flight-tracer
+  w: 900
+  h: 650
+  alt: Map tracing five United Airlines flight paths across the United States
+  repo: https://github.com/stiles/flight-tracer
+  tools: [Python]
+
+- title: chorokit
+  bucket: other-people-use
+  install: pip install chorokit
+  blurb: >-
+    Makes a clean choropleth in a few lines, with defaults for projection, layout
+    and legend chosen so the map is publishable on the first render.
+  img: chorokit
+  w: 900
+  h: 650
+  alt: County-level choropleth map of the 2024 presidential vote margin
+  repo: https://github.com/stiles/chorokit
+  tools: [Python]
+
+- title: hangarbay
+  bucket: other-people-use
+  install: pip install hangarbay
+  blurb: >-
+    A reproducible workflow for the FAA aircraft registry: download the raw files,
+    normalize them into typed tables and find out who owns a tail number.
+  repo: https://github.com/stiles/hangarbay
+  tools: [Python]
+
+- title: chartfeed
+  bucket: other-people-use
+  blurb: >-
+    A responsive gallery of your Datawrapper charts that rebuilds itself every day
+    through GitHub Actions.
+  repo: https://github.com/stiles/chartfeed
+  tools: [JavaScript, GitHub Actions]
+
+- title: notebooks
+  bucket: other-people-use
+  blurb: >-
+    Hundreds of worked Jupyter notebooks for analysis, charts and maps in Python.
+    This is the reference I actually send people who ask how to start.
+  repo: https://github.com/stiles/notebooks
+  tools: [Python, Jupyter, pandas]
+
+# ------------------------------------------------ things that run themselves
+- title: DodgersData.bot
+  bucket: runs-itself
+  blurb: >-
+    An automated pipeline that tracks Dodgers standings and game-by-game
+    performance against every season back to 1958, and publishes the whole thing
+    to a live dashboard each morning.
+  img: dodgersdata
+  w: 900
+  h: 650
+  alt: The DodgersData.bot dashboard, showing a run differential chart and the season record
+  url: https://dodgersdata.bot
+  repo: https://github.com/stiles/dodgers
+  tools: [Python, pandas, D3]
+
+- title: Trump Truth Social archive
+  bucket: runs-itself
+  blurb: >-
+    An auto-updating archive of President Trump's Truth Social posts, built when
+    there was no reliable public record of them.
+  note: Now maintained by CNN
+  repo: https://github.com/stiles/trump-truth-social-archive
+  tools: [Python]
+
+- title: Locations
+  bucket: runs-itself
+  blurb: >-
+    Scrapers that gather store and restaurant locations for major US chains, so you
+    can map a company's footprint without asking the company for its data.
+  img: locations2
+  w: 900
+  h: 650
+  alt: Dot density map of the United States showing thousands of retail locations
+  repo: https://github.com/stiles/locations
+  tools: [Python, web scraping]
+
+- title: LAPD Choppers
+  bucket: runs-itself
+  blurb: >-
+    Tracks LAPD helicopter flights and maps patrol intensity by division,
+    reporting district and neighborhood, so you can see which parts of the city
+    get flown over and how often.
+  img: lapd-choppers
+  w: 800
+  h: 450
+  alt: An LAPD helicopter over the Los Angeles skyline
+  repo: https://github.com/stiles/lapd-choppers
+  tools: [Python, GIS]
+
+- title: North Korea trackers
+  bucket: runs-itself
+  blurb: >-
+    Two pipelines running side by side: one archives hundreds of provocative
+    actions, from missile launches to nuclear tests, and the other scrapes state
+    media headlines as they publish.
+  # TODO: one card for two repos. Second repo is stiles/north-korea-news.
+  repo: https://github.com/stiles/north-korea-provocations
+  tools: [Python]
+
+# ------------------------------------------------------- things to click on
+- title: JacarandaMap
+  bucket: click-on
+  blurb: >-
+    More than 1.6 million geocoded street trees across 40-plus Los Angeles-area
+    municipalities, collected from dozens of separate agencies and put on one map.
+  img: jacarandamap
+  w: 900
+  h: 650
+  alt: Map of central Los Angeles with purple dots marking jacaranda trees
+  url: https://jacarandamap.com
+  repo: https://github.com/stiles/la-trees
+  tools: [Python, GIS]
+
+- title: BirthdayRank
+  bucket: click-on
+  blurb: >-
+    An interactive look at which birthdays are common in the United States and
+    which are rare, and why the pattern is stranger than you'd guess.
+  img: birthdayrank
+  w: 900
+  h: 506
+  alt: Calendar heat map of US birth frequency for every day of the year
+  url: https://birthdayrank.com
+  repo: https://github.com/stiles/birthdays
+  tools: [Svelte, D3]
+
+- title: What's My LA
+  bucket: click-on
+  blurb: >-
+    Type an address and see which Los Angeles you actually live in — neighborhood,
+    council district, school zone and the rest of the overlapping boundaries.
+  img: whatsmyla
+  w: 900
+  h: 506
+  alt: The What's My LA home page, with an address search field
+  url: https://www.whatsmyla.com
+  repo: https://github.com/stiles/whats-my-la
+  tools: [Svelte, GIS]
