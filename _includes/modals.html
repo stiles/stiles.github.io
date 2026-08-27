@@ -1,57 +1,46 @@
-<!-- Portfolio Modals -->
+{%- comment -%}
+One native <dialog> per project. Native gives focus trapping, Esc-to-close and
+a backdrop without a library, which is what let Bootstrap's modal JS go.
+{%- endcomment -%}
 {% for project in site.data.projects %}
 {% unless project.featured %}
 {%- assign slug = project.title | slugify -%}
-<div class="portfolio-modal modal fade" id="portfolioModal-{{ slug }}" tabindex="-1" role="dialog" aria-hidden="true"
-  aria-labelledby="portfolioModalLabel-{{ slug }}">
-  <div class="modal-content">
-    <button type="button" class="close-modal-btn" data-dismiss="modal" aria-label="Close">
-      <i class="fa fa-times"></i>
+<dialog class="project-dialog" id="dialog-{{ slug }}" aria-labelledby="dialog-title-{{ slug }}">
+  <div class="dialog-inner">
+    <button type="button" class="dialog-close">
+      <span class="visually-hidden">Close</span>
+      {% include icon.html name="close" size=18 %}
     </button>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 col-lg-offset-1">
-          <div class="modal-body modal-body-redesign">
-            <div class="modal-layout{% unless project.img %} modal-layout-textonly{% endunless %}">
-              {% if project.img %}
-              <div class="modal-image-col">
-                {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
-              </div>
-              {% endif %}
-              <div class="modal-text-col">
-                {% if project.note %}
-                <div class="modal-meta-tags">
-                  <span class="meta-tag meta-tag-note">{{ project.note }}</span>
-                </div>
-                {% endif %}
-                <h2 class="modal-title" id="portfolioModalLabel-{{ slug }}">{{ project.title }}</h2>
-                {% if project.install %}
-                <p class="featured-install"><code>{{ project.install }}</code></p>
-                {% endif %}
-                {% if project.blurb %}
-                <p class="modal-description">{{ project.blurb }}</p>
-                {% endif %}
-                {% if project.tools %}
-                <div class="modal-tools">
-                  {% for tool in project.tools %}<span class="tool-tag">{{ tool }}</span>{% endfor %}
-                </div>
-                {% endif %}
-                {% if project.url or project.repo or project.writeup %}
-                <p class="modal-links">
-                  {% if project.url %}<a href="{{ project.url }}" target="_blank" rel="noopener">Visit site <i
-                      class="fa fa-arrow-right"></i></a>{% endif %}
-                  {% if project.repo %}<a href="{{ project.repo }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
-                  {% if project.writeup %}<a href="{{ project.writeup }}" target="_blank"
-                    rel="noopener">Write-up</a>{% endif %}
-                </p>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+    {% if project.img %}
+    <div class="dialog-visual">
+      {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
+    </div>
+    {% endif %}
+
+    <div class="dialog-text">
+      {% if project.note %}
+      <p><span class="badge">{{ project.note }}</span></p>
+      {% endif %}
+      <h2 class="dialog-title" id="dialog-title-{{ slug }}">{{ project.title }}</h2>
+      {% if project.install %}
+      <p class="install"><code>{{ project.install }}</code></p>
+      {% endif %}
+      <p>{{ project.blurb }}</p>
+      {% if project.tools %}
+      <ul class="tags">
+        {% for tool in project.tools %}<li class="tag">{{ tool }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      {% if project.url or project.repo or project.writeup %}
+      <p class="links">
+        {% if project.url %}<a href="{{ project.url }}">Visit site {% include icon.html name="arrow-right" size=15 %}</a>{% endif %}
+        {% if project.repo %}<a href="{{ project.repo }}">GitHub</a>{% endif %}
+        {% if project.writeup %}<a href="{{ project.writeup }}">Write-up</a>{% endif %}
+      </p>
+      {% endif %}
     </div>
   </div>
-</div>
+</dialog>
 {% endunless %}
 {% endfor %}

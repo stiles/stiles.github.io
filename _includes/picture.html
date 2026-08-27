@@ -7,7 +7,7 @@ Serves WebP with a JPEG fallback. Pass the extensionless base name from _data/pr
 {%- assign jpg = '/img/portfolio/' | append: include.img | append: '.jpg' | relative_url -%}
 <picture>
   <source type="image/webp" srcset="{{ webp }}">
-  <img src="{{ jpg }}" class="{{ include.class | default: 'img-responsive' }}" alt="{{ include.alt }}"
+  <img src="{{ jpg }}"{% if include.class %} class="{{ include.class }}"{% endif %} alt="{{ include.alt }}"
     {% if include.w %}width="{{ include.w }}"{% endif %} {% if include.h %}height="{{ include.h }}"{% endif %}
     {% if include.lazy %}loading="lazy" decoding="async"{% endif %}>
 </picture>

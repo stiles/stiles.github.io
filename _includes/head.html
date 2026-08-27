@@ -7,18 +7,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ page_title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ page_description }}">
-  <meta name="keywords" content="{{ site.keywords }}" />
-  {% if site.meta_author %}
-  <meta name="author" content="{{ site.meta_author }}">{% endif %}
-  
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="feed.xml">
+  <meta name="keywords" content="{{ site.keywords }}">
+  {% if site.meta_author %}<meta name="author" content="{{ site.meta_author }}">{% endif %}
 
-  <!-- OpenGraph meta tags -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ '/feed.xml' | relative_url }}">
+
+  <!-- OpenGraph -->
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ page_description }}">
   <meta property="og:type" content="website">
@@ -29,7 +27,7 @@
   <meta property="og:site_name" content="{{ site.title }}">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card meta tags -->
+  <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@stiles">
   <meta name="twitter:creator" content="@stiles">
@@ -37,28 +35,15 @@
   <meta name="twitter:description" content="{{ page_description }}">
   <meta name="twitter:image" content="{{ site.url }}/img/og-image.png">
 
-  <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-  <link rel="stylesheet" href="{{ " style.css" }}">
+  <!-- Self-hosted so there's no third-party font request, and preloaded
+       because both faces are needed for first paint. -->
+  <link rel="preload" href="{{ '/fonts/geist-latin-var.woff2' | relative_url }}" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="preload" href="{{ '/fonts/geist-mono-latin-var.woff2' | relative_url }}" as="font" type="font/woff2"
+    crossorigin>
+  <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+  <link rel="shortcut icon" type="image/png" href="{{ '/img/favicon.png' | relative_url }}">
 
-  <!-- Google verification -->
-  {% if site.google_verify %}
-  <meta name="google-site-verification" content="{{ site.google_verify }}">{% endif %}
-
-  <!-- Bing Verification -->
-  {% if site.bing_verify %}
-  <meta name="msvalidate.01" content="{{ site.bing_verify }}">{% endif %}
-
-  <!-- Custom Fonts -->
-  <link rel="stylesheet" href="{{ " css/font-awesome/css/all.min.css" }}">
-  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
-  <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href="//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-  <!-- <link href="//fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  {% if site.google_verify %}<meta name="google-site-verification" content="{{ site.google_verify }}">{% endif %}
+  {% if site.bing_verify %}<meta name="msvalidate.01" content="{{ site.bing_verify }}">{% endif %}
 </head>

@@ -25,20 +25,17 @@ contact: static
 # https://help.disqus.com/customer/portal/articles/466208
 disqus_shortname: myshortname
 
-# Color settings (hex-codes without the leading hash-tag)
+# Color settings (hex codes, no leading hash). These feed the CSS custom
+# properties in _layouts/style.css, so a palette change is a one-file edit.
 color:
-  primary: 7F9F80 
-  primary-rgb: "18, 64, 118" 
+  primary: 7F9F80
   secondary: 233140
   secondary-dark: 17202a
-  about-link: ffffff
 
 # Footer settings
 footer:
   copyright: Matt Stiles
   location: Los Angeles
-  social: Social stuff
-  credits: Credits
 
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
@@ -57,7 +54,7 @@ address:
   - line: Los Angeles, CA
 
 # Credits content
-credits: 'Made with Jekyll'
+credits: 'Made with Jekyll because WordPress is trash'
 
 # Build settings
 markdown: kramdown
@@ -77,9 +74,5 @@ exclude:
   - vendor
   - .bundle
 
-remote_theme: jeromelachaud/freelancer-theme
-
 plugins:
-  - jekyll-remote-theme
   - jekyll-sitemap
-  - jekyll-seo-tag

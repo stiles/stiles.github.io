@@ -1,40 +1,36 @@
-<!-- Portfolio Grid Section -->
 {%- assign featured = site.data.projects | where: "featured", true | first -%}
 <section id="portfolio">
-  <div class="container portfolio-flex-grid">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <span class="section-label">Selected work</span>
-        <h2 class="section-title">Projects</h2>
-      </div>
+  <div class="container">
+    <div class="section-head">
+      <span class="section-label">Selected work</span>
+      <h2 class="section-title">Projects</h2>
     </div>
 
     {% if featured %}
-    <div class="featured-card">
+    <div class="featured">
       <div class="featured-text">
         <span class="featured-eyebrow">Latest</span>
         <h3 class="featured-title">{{ featured.title }}</h3>
         {% if featured.install %}
-        <p class="featured-install"><code>{{ featured.install }}</code></p>
+        <p class="install"><code>{{ featured.install }}</code></p>
         {% endif %}
-        <p class="featured-blurb">{{ featured.blurb }}</p>
+        <p>{{ featured.blurb }}</p>
         {% if featured.tools %}
-        <div class="modal-tools">
-          {% for tool in featured.tools %}<span class="tool-tag">{{ tool }}</span>{% endfor %}
-        </div>
+        <ul class="tags">
+          {% for tool in featured.tools %}<li class="tag">{{ tool }}</li>{% endfor %}
+        </ul>
         {% endif %}
-        <p class="featured-links">
-          {% if featured.url %}<a href="{{ featured.url }}" target="_blank" rel="noopener">Visit site <i
-              class="fa fa-arrow-right"></i></a>{% endif %}
-          {% if featured.repo %}<a href="{{ featured.repo }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
-          {% if featured.writeup %}<a href="{{ featured.writeup }}" target="_blank" rel="noopener">Write-up</a>{% endif %}
+        <p class="links">
+          {% if featured.url %}<a href="{{ featured.url }}">Visit site {% include icon.html name="arrow-right" size=15 %}</a>{% endif %}
+          {% if featured.repo %}<a href="{{ featured.repo }}">GitHub</a>{% endif %}
+          {% if featured.writeup %}<a href="{{ featured.writeup }}">Write-up</a>{% endif %}
         </p>
       </div>
       <div class="featured-visual">
         {% if featured.terminal_meta %}
         <div class="terminal-meta">{{ featured.terminal_meta }}</div>
         {% endif %}
-        <pre class="terminal-block"><code>{{ featured.terminal | escape }}</code></pre>
+        <pre class="terminal"><code>{{ featured.terminal | escape }}</code></pre>
         {% if featured.caption %}
         <p class="terminal-caption">{{ featured.caption }}</p>
         {% endif %}
@@ -53,35 +49,37 @@
     {%- assign ordered = with_img | concat: without_img -%}
     {% if ordered.size > 0 %}
     <h3 class="bucket-title">{{ bucket.title }}</h3>
-    <div class="portfolio-flex-row">
+    <div class="work-row">
       {% for project in ordered %}
       {%- assign slug = project.title | slugify -%}
-      <div class="portfolio-flex-item portfolio-item">
-        <a href="#portfolioModal-{{ slug }}" class="portfolio-link" data-toggle="modal">
-          {% if project.img %}
-          <div class="portfolio-image-wrapper">
-            {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
-            <div class="portfolio-overlay">
-              <span class="portfolio-view-label">View project <i class="fa fa-arrow-right"></i></span>
-            </div>
+      {%- comment -%}
+      A real link, so a click still goes somewhere useful without JS. The script
+      intercepts it and opens the dialog instead.
+      {%- endcomment -%}
+      <a class="work-card" href="{{ project.url | default: project.repo }}" data-dialog="{{ slug }}">
+        {% if project.img %}
+        <div class="work-thumb">
+          {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
+          <div class="work-overlay">
+            <span>View project {% include icon.html name="arrow-right" size=14 %}</span>
           </div>
-          <div class="portfolio-info">
-            <h4 class="portfolio-title">{{ project.title }}</h4>
-            <span class="portfolio-category">{{ project.tools | join: ", " }}</span>
-            {% if project.note %}<span class="portfolio-note">{{ project.note }}</span>{% endif %}
+        </div>
+        <div class="work-meta">
+          <h4 class="work-title">{{ project.title }}</h4>
+          <span class="work-tools">{{ project.tools | join: ", " }}</span>
+          {% if project.note %}<span class="work-note">{{ project.note }}</span>{% endif %}
+        </div>
+        {% else %}
+        <div class="work-textcard">
+          <h4 class="work-title">{{ project.title }}</h4>
+          <p>{{ project.blurb | strip_html | truncate: 140 }}</p>
+          <div class="work-textcard-foot">
+            <span class="work-tools">{{ project.tools | join: ", " }}</span>
+            {% if project.note %}<span class="work-note">{{ project.note }}</span>{% endif %}
           </div>
-          {% else %}
-          <div class="portfolio-textcard">
-            <h4 class="portfolio-title">{{ project.title }}</h4>
-            <p class="portfolio-textcard-blurb">{{ project.blurb | strip_html | truncate: 140 }}</p>
-            <div class="portfolio-textcard-foot">
-              <span class="portfolio-category">{{ project.tools | join: ", " }}</span>
-              {% if project.note %}<span class="portfolio-note">{{ project.note }}</span>{% endif %}
-            </div>
-          </div>
-          {% endif %}
-        </a>
-      </div>
+        </div>
+        {% endif %}
+      </a>
       {% endfor %}
     </div>
     {% endif %}

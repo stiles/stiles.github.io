@@ -2,13 +2,13 @@
 <html lang="en">
 {% include head.html %}
 
-<body id="page-top" class="index">
+<body id="page-top">
   {% include nav.html %}
-  {% include header.html %}
-  {% include portfolio_grid.html %}
-
-  {% include contact_static.html %}
-
+  <main>
+    {% include header.html %}
+    {% include portfolio_grid.html %}
+    {% include contact_static.html %}
+  </main>
   {% include footer.html %}
   {% include modals.html %}
   {% include js.html %}

@@ -1,26 +1,25 @@
-<!-- Header with About -->
-<header class="header-redesign" id="about">
+<header class="site-header" id="about">
   <div class="container">
-    <div class="header-hero">
-      <div class="hero-intro">
-        <img class="profile-image" src="img/profile.png" alt="Matt Stiles" />
-        <span class="greeting">{{ site.home }}</span>
-        <p class="tagline">{{ site.skills }}</p>
-      </div>
+    <div class="hero">
+      <img class="hero-avatar" src="{{ '/img/profile.png' | relative_url }}"
+        alt="Illustrated portrait of Matt Stiles" width="150" height="150">
+      <h1 class="hero-title">{{ site.home }}</h1>
+      <p class="hero-sub">{{ site.skills }}</p>
     </div>
-    
-    <div class="header-about">
+
+    <div class="about">
       <div class="about-columns">
-        <div class="about-col">
+        <div>
           <p>I've spent years <a href="https://www.linkedin.com/in/matthustiles/">writing, coding and editing</a> data-driven and visual stories — at NPR, The Texas Tribune, <em>The Wall Street Journal</em> and the <em>Los Angeles Times</em> before <a href="https://www.cnn.com/profiles/matt-stiles">CNN</a>, where I edit as often as I build. Read my <a href="https://authory.com/MattStiles">stories</a> and <a href="https://mattstiles.me/chartfeed/">graphics</a>.</p>
         </div>
-        <div class="about-col">
+        <div>
           <p>My work is storytelling with data, code and visuals, usually in Python and JavaScript. In 2012 I founded <a href="https://thedailyviz.com/">The Daily Viz</a>, a now-retired site of data stories. The software grew out of the reporting rather than alongside it: packages that pull records out of <a href="https://github.com/stiles/ezesri">government GIS portals</a> and <a href="https://github.com/stiles/pyfr24">flight databases</a>, scrapers that <a href="https://github.com/stiles/locations/">map a company's footprint</a>, <a href="https://dodgersdata.bot/">pipelines that keep publishing</a> after a story is filed, and a map of <a href="https://github.com/stiles/la-trees">1.6 million Los Angeles street trees</a>.</p>
         </div>
       </div>
-      <div class="header-cta">
-        <a href="#portfolio" class="btn-header-primary">View projects</a>
-        <a href="#contact" class="btn-header-secondary">Get in touch</a>
+
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn btn-solid">View projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
   </div>

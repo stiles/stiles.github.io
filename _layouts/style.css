@@ -1,306 +1,1008 @@
-{% include css/bootstrap.min.css %}
-{% include css/main.css %}
+/*
+ * mattstiles.me
+ *
+ * Written to replace Bootstrap 3, jQuery and the Freelancer remote theme.
+ * Colors still come from _config.yml, so a palette change is a one-file edit.
+ */
 
-.modal-descrption {
-    text-align: left;
+/* ------------------------------------------------------------------ fonts */
+
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-latin-var.woff2") format("woff2");
 }
 
-hr.star-light,
-hr.star-primary {
-    margin: 25px auto 30px;
-    padding: 0;
-    max-width: 250px;
-    border: 0;
-    border-top: solid 0px;
-    text-align: center;
-    overflow: visible;
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-var.woff2") format("woff2");
 }
 
-hr.star-light:after,
-hr.star-primary:after {
-    content: "\f201";
-    display: inline-block;
-    position: relative;
-    top: -.8em;
-    padding: 0 .25em;
-    font-family: FontAwesome;
-    font-size: 2em;
+/* ----------------------------------------------------------------- tokens */
+
+:root {
+  --primary: #{{ site.color.primary }};
+  --primary-deep: #5a7a5b;
+  --ink: #{{ site.color.secondary }};
+  --ink-deep: #{{ site.color.secondary-dark }};
+
+  --text: #2f3438;
+  --text-soft: #5f6670;
+  --text-faint: #868d95;
+  --rule: #e3e7ea;
+  --rule-strong: #ccd3d8;
+  --paper: #ffffff;
+  --paper-soft: #fafafa;
+  --paper-card: #fbfbfa;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: 1.375rem;
+  --step-3: 1.75rem;
+  --step-4: 2.25rem;
+  --step-5: 3rem;
+
+  --gap: 1.25rem;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --measure: 68ch;
+
+  --nav-h: 62px;
 }
 
-.navbar-fixed-top .navbar-brand {
-    font-size: 1.5em;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    transition: all .3s;
+/* ------------------------------------------------------------------- base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.link 
-a,
-a.hover,
-a:focus,
-a:active,
-a.active {
-    outline: 0;
-    color: #{{ site.color.about-link }};
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-.link a {
-    text-decoration: underline;
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--paper);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-h2.contact  {
-    margin-bottom: 50px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-sans);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
 }
 
-.page-content {
-    padding-top: 140px;
-    padding-bottom: 60px;
+p {
+  margin: 0 0 1em;
 }
 
-/* Bucket headings above each group in the work grid. These have to read as
-   group labels rather than captions, so they get a rule and real size. */
-.bucket-title {
-    margin: 0 0 24px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e4e7e9;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: .01em;
-    text-transform: none;
-    color: #{{ site.color.secondary }};
+a {
+  color: var(--primary);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
-.portfolio-flex-row:not(:last-child) {
-    margin-bottom: 18px;
+img,
+picture,
+svg {
+  max-width: 100%;
 }
 
-.bucket-title + .portfolio-flex-row {
-    margin-bottom: 44px;
+img {
+  height: auto;
 }
 
-/* <picture> is inline by default, which leaves a baseline gap under the image. */
-.portfolio-image-wrapper picture,
-.modal-image-col picture {
-    display: block;
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+  /* Without this, "--game" ligates into a single dash and commands read wrong. */
+  font-variant-ligatures: none;
 }
 
-/* ---------------------------------------------------------------- featured */
+button {
+  font: inherit;
+  color: inherit;
+}
 
-.featured-card {
+/* One visible focus style for everything, since the old theme removed them. */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+section {
+  padding: 72px 0;
+  /* Offsets the fixed nav when jumping to an anchor. */
+  scroll-margin-top: var(--nav-h);
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 96px 0;
+  }
+}
+
+/* -------------------------------------------------------------------- nav */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--ink);
+  transition: padding 0.25s ease;
+}
+
+.site-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--nav-h);
+}
+
+.nav-brand {
+  font-size: var(--step-1);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-decoration: none;
+  transition: font-size 0.25s ease;
+}
+
+.site-nav.is-scrolled .nav-brand {
+  font-size: var(--step-0);
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  background: none;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: none;
+  gap: 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+  }
+}
+
+/* Mobile: the toggle reveals the list as a stacked panel below the bar. */
+@media (max-width: 767px) {
+  .nav-links.is-open {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-bottom: 56px;
-    padding: 36px;
-    border: 1px solid #e4e7e9;
-    border-radius: 10px;
-    background-color: #fbfbfa;
+    gap: 0;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    padding: 8px 20px 16px;
+    background-color: var(--ink);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .nav-links.is-open a {
+    display: block;
+    padding: 12px 0;
+  }
 }
 
-@media (min-width: 860px) {
-    .featured-card {
-        flex-direction: row;
-        align-items: center;
-    }
+/* ----------------------------------------------------------------- header */
 
-    .featured-text {
-        flex: 0 0 38%;
-        max-width: 38%;
-    }
+.site-header {
+  padding-top: var(--nav-h);
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
+}
 
-    .featured-visual {
-        flex: 1;
-        min-width: 0;
-    }
+.site-header .container {
+  padding-top: 64px;
+  padding-bottom: 56px;
+}
+
+.hero {
+  max-width: 620px;
+  margin: 0 auto 44px;
+}
+
+.hero-avatar {
+  width: 130px;
+  height: 130px;
+  margin-bottom: 20px;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hero-title {
+  margin: 0 0 12px;
+  font-size: var(--step-4);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+
+.hero-sub {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.about {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.about-columns p {
+  margin: 0;
+  font-size: var(--step-0);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.about-columns a {
+  font-weight: 550;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-columns a:hover {
+  opacity: 0.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-solid {
+  color: var(--ink);
+  background-color: #fff;
+}
+
+.btn-solid:hover {
+  color: #fff;
+  background-color: var(--ink);
+}
+
+.btn-ghost {
+  color: #fff;
+  background: none;
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .site-header .container {
+    padding-top: 88px;
+    padding-bottom: 76px;
+  }
+
+  .hero-avatar {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-size: var(--step-5);
+  }
+
+  .hero-sub {
+    font-size: var(--step-2);
+  }
+
+  .about-columns {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* --------------------------------------------------------- section titles */
+
+.section-head {
+  margin-bottom: 44px;
+  text-align: center;
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.section-title {
+  margin: 0;
+  font-size: var(--step-4);
+  letter-spacing: -0.025em;
+}
+
+/* -------------------------------------------------------------- work grid */
+
+.bucket-title {
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--step-1);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.work-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 2%;
+  margin-bottom: 52px;
+}
+
+@media (min-width: 620px) {
+  .work-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 940px) {
+  .work-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+
+/* Fixed 3:2 well, so mixed source aspect ratios still line up in a row. */
+.work-thumb {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background-color: #eee;
+}
+
+.work-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.work-card:hover .work-thumb img,
+.work-card:focus-visible .work-thumb img {
+  transform: scale(1.05);
+}
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 18px;
+  opacity: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+  transition: opacity 0.25s ease;
+}
+
+.work-card:hover .work-overlay,
+.work-card:focus-visible .work-overlay {
+  opacity: 1;
+}
+
+.work-overlay span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.work-meta {
+  padding: 14px 2px 0;
+}
+
+.work-title {
+  margin: 0 0 3px;
+  font-size: var(--step-1);
+  font-weight: 650;
+  transition: color 0.2s ease;
+}
+
+.work-card:hover .work-title,
+.work-card:focus-visible .work-title {
+  color: var(--primary);
+}
+
+.work-tools {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.work-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Text-only cards: a CLI tool or a notebook collection has no screenshot
+   worth showing, so those lead with the sentence instead. */
+.work-textcard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 190px;
+  padding: 24px 22px 20px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background-color: var(--paper-card);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.work-card:hover .work-textcard,
+.work-card:focus-visible .work-textcard {
+  border-color: var(--primary);
+  background-color: var(--paper);
+}
+
+.work-textcard p {
+  margin: 6px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.work-textcard-foot {
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+/* --------------------------------------------------------- featured card */
+
+.featured {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 56px;
+  padding: 32px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background-color: var(--paper-card);
+}
+
+/* Flex and grid children default to min-width:auto, which lets the wide
+   terminal table push the whole page sideways. Both need an explicit zero. */
+.featured-text,
+.featured-visual {
+  min-width: 0;
 }
 
 .featured-eyebrow {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #{{ site.color.primary }};
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary);
 }
 
 .featured-title {
-    margin: 0 0 14px;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 2em;
-    font-weight: 700;
-    text-transform: none;
-    color: #{{ site.color.secondary }};
+  margin: 0 0 14px;
+  font-size: var(--step-3);
+  font-weight: 700;
 }
 
-.featured-blurb {
-    margin-bottom: 20px;
-    font-size: 16px;
-    line-height: 1.65;
-    color: #444;
+.featured p {
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text-soft);
 }
 
-.featured-install code {
-    padding: 5px 10px;
-    border: 1px solid #dfe3e6;
-    border-radius: 5px;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 13px;
-    color: #{{ site.color.secondary }};
-    background-color: #fff;
+.install {
+  margin: 0 0 18px;
 }
 
-.featured-links,
-.modal-links {
-    margin: 18px 0 0;
-    font-size: 14px;
-    font-weight: 600;
+.install code {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 0.8125rem;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 5px;
 }
 
-.featured-links a,
-.modal-links a {
-    margin-right: 20px;
-    color: #{{ site.color.primary }};
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
+@media (min-width: 880px) {
+  .featured {
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .featured-text {
+    flex: 0 0 38%;
+  }
+
+  .featured-visual {
+    flex: 1;
+  }
 }
 
-.featured-links a:hover,
-.modal-links a:hover {
-    border-bottom-color: #{{ site.color.primary }};
-}
-
-/* Terminal block on the featured card. Mound is a CLI, so real output is the
-   most honest thing to show; the table is wider than a phone, hence the scroll. */
+/* Mound is a CLI, so real output is the most honest thing to show. The table
+   is wider than a phone, hence the scroll. */
 .terminal-meta {
-    padding: 8px 14px;
-    border: 1px solid #2c3540;
-    border-bottom: 0;
-    border-radius: 8px 8px 0 0;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 11px;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, .55);
-    background-color: #{{ site.color.secondary-dark }};
+  padding: 8px 14px;
+  border: 1px solid #2c3540;
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  background-color: var(--ink-deep);
 }
 
-.terminal-block {
-    margin: 0;
-    padding: 16px 18px 18px;
-    border: 0;
-    border-radius: 0 0 8px 8px;
-    overflow-x: auto;
-    background-color: #{{ site.color.secondary-dark }};
+.terminal {
+  max-width: 100%;
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background-color: var(--ink-deep);
 }
 
-.terminal-block code {
-    display: block;
-    padding: 0;
-    white-space: pre;
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    /* Without this, "--game" ligates into a single dash and the command reads wrong. */
-    font-variant-ligatures: none;
-    font-size: 11.5px;
-    line-height: 1.75;
-    color: #e8ebed;
-    background: none;
+.terminal code {
+  display: block;
+  white-space: pre;
+  font-size: 0.71875rem;
+  line-height: 1.75;
+  color: #e8ebed;
 }
 
 .terminal-caption {
-    margin: 14px 0 0;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: #6b7378;
+  margin: 14px 0 0;
+  font-size: 0.84375rem;
+  line-height: 1.6;
+  color: var(--text-faint);
 }
 
-/* -------------------------------------------------------- text-only cards */
+/* ------------------------------------------------------------ link groups */
 
-/* Not every project photographs well. A CLI tool or a notebook collection has
-   no screenshot worth showing, so those cards lead with the sentence instead.
-   The flex chain below exists so a text card matches the height of the image
-   cards beside it rather than floating short at the top of the row. */
-/* Upstream uses space-between, which pushes a trailing row of two cards to
-   opposite edges and leaves a hole in the middle. Fixed tracks plus a gap keep
-   partial rows left-aligned on the same column grid as full rows. */
-@media (min-width: 640px) {
-    .portfolio-flex-grid .portfolio-flex-row {
-        justify-content: flex-start;
-        gap: 0 2%;
-    }
-
-    .portfolio-flex-grid .portfolio-flex-row .portfolio-flex-item {
-        display: flex;
-        flex: 0 0 49%;
-        max-width: 49%;
-    }
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 18px 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
-@media (min-width: 960px) {
-    .portfolio-flex-grid .portfolio-flex-row .portfolio-flex-item {
-        flex: 0 0 32%;
-        max-width: 32%;
-    }
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
-/* Matches the specificity of the upstream rule that sets display: block. */
-#portfolio .portfolio-item .portfolio-link {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.links a:hover {
+  border-bottom-color: var(--primary);
 }
 
-/* Frame every thumbnail. Several are charts and maps on white, which otherwise
-   bleed into the page and leave the card with no visible edge. */
-.portfolio-image-wrapper {
-    border: 1px solid #e4e7e9;
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
 }
 
-.portfolio-textcard {
-    display: flex;
-    flex-direction: column;
+.tag {
+  padding: 5px 13px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink);
+  background-color: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: 20px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 11px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: var(--primary);
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------------- dialog */
+
+/* Native <dialog> gives focus trapping, Esc-to-close and a backdrop for free,
+   which is why this replaced the Bootstrap modal rather than reimplementing it. */
+.project-dialog {
+  width: min(1000px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background-color: var(--paper-soft);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.project-dialog::backdrop {
+  background-color: rgba(16, 24, 40, 0.6);
+}
+
+.dialog-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 30px;
+}
+
+@media (min-width: 900px) {
+  .dialog-inner {
+    flex-direction: row;
+    gap: 36px;
+    align-items: flex-start;
+    padding: 40px;
+  }
+
+  .dialog-visual {
+    flex: 0 0 52%;
+  }
+
+  .dialog-text {
     flex: 1;
-    min-height: 200px;
-    padding: 26px 24px 22px;
-    border: 1px solid #e4e7e9;
-    border-radius: 8px;
-    background-color: #fbfbfa;
-    transition: border-color .25s ease, background-color .25s ease;
+  }
 }
 
-.portfolio-link:hover .portfolio-textcard {
-    border-color: #{{ site.color.primary }};
-    background-color: #fff;
+.dialog-visual img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.portfolio-textcard-blurb {
-    margin: 8px 0 0;
-    font-size: 14.5px;
-    line-height: 1.6;
-    color: #555;
+.dialog-title {
+  margin: 0 0 16px;
+  font-size: var(--step-3);
+  font-weight: 700;
 }
 
-.portfolio-textcard-foot {
-    margin-top: auto;
-    padding-top: 18px;
+.dialog-text > p {
+  font-size: var(--step-0);
+  line-height: 1.7;
+  color: var(--text-soft);
 }
 
-.portfolio-note {
-    display: block;
-    margin-top: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .02em;
-    color: #{{ site.color.primary }};
+.dialog-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background-color: var(--ink);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.meta-tag-note {
-    background-color: #{{ site.color.primary }};
-    color: #fff;
+.dialog-close:hover {
+  background-color: var(--primary);
 }
 
-.modal-layout-textonly .modal-text-col {
-    flex: 1 1 100%;
-    max-width: 100%;
+/* ---------------------------------------------------------------- contact */
+
+.contact-section {
+  background-color: var(--paper-soft);
+}
+
+.contact-form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font: inherit;
+  color: var(--text);
+  background-color: var(--paper);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 0;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(127, 159, 128, 0.2);
+}
+
+/* Native constraint validation replaced jqBootstrapValidation. :user-invalid
+   only fires after interaction, so empty fields aren't red on arrival. */
+.field input:user-invalid,
+.field textarea:user-invalid {
+  border-color: #b4443c;
+}
+
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: var(--ink);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary);
+}
+
+/* ----------------------------------------------------------------- footer */
+
+.site-footer {
+  padding: 44px 0 0;
+  color: #fff;
+  background-color: var(--ink);
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-name {
+  display: block;
+  font-size: var(--step-1);
+  font-weight: 650;
+}
+
+.footer-role {
+  display: block;
+  font-size: 0.875rem;
+  opacity: 0.7;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social a:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  justify-content: center;
+  padding: 18px 0;
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* ------------------------------------------------------------ page layout */
+
+.page-content {
+  padding-top: calc(var(--nav-h) + 56px);
+  padding-bottom: 64px;
+}
+
+.page-content h1 {
+  font-size: var(--step-4);
+}
+
+.page-content p {
+  max-width: var(--measure);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

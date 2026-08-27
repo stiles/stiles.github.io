@@ -1,23 +1,21 @@
-<!-- Footer -->
-<footer class="footer-redesign">
+<footer class="site-footer">
   <div class="container">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <span class="footer-name">Matt Stiles</span>
-        <span class="footer-role">Data journalist in Los Angeles</span>
+    <div class="footer-top">
+      <div>
+        <span class="footer-name">{{ site.footer.copyright }}</span>
+        <span class="footer-role">Data journalist in {{ site.footer.location }}</span>
       </div>
       <div class="footer-social">
         {% for network in site.social %}
-        <a href="{{ network.url }}" class="social-link" aria-label="{{ network.title }}">
-          <i class="fa-brands fa-{{ network.title }}"></i>
+        <a href="{{ network.url }}" aria-label="{{ network.title }}" rel="me">
+          {% include icon.html name=network.title size=18 %}
         </a>
         {% endfor %}
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="copyright">&copy; {{ site.time | date: '%Y' }} {{ site.footer.copyright }}</span>
-      <span class="footer-divider">|</span>
-      <span class="footer-credit">Made with Jekyll because WordPress is trash</span>
+      <span>&copy; {{ site.time | date: '%Y' }} {{ site.footer.copyright }}</span>
+      <span>{{ site.credits }}</span>
     </div>
   </div>
 </footer>

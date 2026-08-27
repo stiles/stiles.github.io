@@ -1,30 +1,29 @@
-<!-- Contact Section -->
 <section id="contact" class="contact-section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-        <div class="contact-content">
-          <span class="section-label">Hello</span>
-          <h2 class="contact-title">Let's talk</h2>
-          <p class="contact-subtitle">Have a question? Want to work together? Send me a message.</p>
-          
-          <form action="//formspree.io/f/xrgnapew" method="POST" name="sentMessage" id="contactForm" class="contact-form" novalidate>
-            <div class="form-group-modern">
-              <input type="text" name="name" class="form-input-modern" placeholder="Your name" id="name" required>
-            </div>
-            <div class="form-group-modern">
-              <input type="email" name="_replyto" class="form-input-modern" placeholder="Email address" id="email" required>
-            </div>
-            <input type="hidden" name="_subject" value="New email from your website!">
-            <input type="text" name="_gotcha" style="display:none" />
-            <div class="form-group-modern">
-              <textarea rows="4" name="message" class="form-input-modern form-textarea" placeholder="Your message" id="message" required></textarea>
-            </div>
-            <div id="success"></div>
-            <button type="submit" class="btn-submit">Send message <i class="fa fa-paper-plane"></i></button>
-          </form>
-        </div>
-      </div>
+    <div class="section-head">
+      <span class="section-label">Hello</span>
+      <h2 class="section-title">Let's talk</h2>
+      <p>Have a question? Want to work together? Send me a message.</p>
     </div>
+
+    <form action="//formspree.io/f/xrgnapew" method="POST" class="contact-form">
+      <div class="field">
+        <label for="name">Your name</label>
+        <input type="text" name="name" id="name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" name="_replyto" id="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea rows="4" name="message" id="message" required></textarea>
+      </div>
+      <input type="hidden" name="_subject" value="New email from your website!">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
+      <button type="submit" class="btn-submit">
+        Send message {% include icon.html name="send" size=17 %}
+      </button>
+    </form>
   </div>
 </section>
