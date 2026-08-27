@@ -197,6 +197,10 @@ section {
   transition: font-size 0.25s ease;
 }
 
+.site-nav.is-scrolled {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), 0 6px 24px rgba(10, 15, 28, 0.35);
+}
+
 .site-nav.is-scrolled .nav-brand {
   font-size: var(--step-0);
 }
@@ -604,8 +608,13 @@ section {
 
 /* Flex and grid children default to min-width:auto, which lets the wide
    terminal table push the whole page sideways. Both need an explicit zero. */
-.featured-text,
+.featured-text {
+  min-width: 0;
+}
+
 .featured-visual {
+  width: fit-content;
+  max-width: 100%;
   min-width: 0;
 }
 
@@ -645,7 +654,7 @@ section {
   border-radius: 5px;
 }
 
-@media (min-width: 880px) {
+@media (min-width: 1120px) {
   .featured {
     flex-direction: row;
     align-items: center;
@@ -653,16 +662,22 @@ section {
   }
 
   .featured-text {
-    flex: 0 0 38%;
+    flex: 0 0 35%;
   }
 
   .featured-visual {
     flex: 1;
+    width: auto;
   }
 }
 
 /* Mound is a CLI, so real output is the most honest thing to show. The table
    is wider than a phone, hence the scroll. */
+.terminal-block {
+  width: fit-content;
+  max-width: 100%;
+}
+
 .terminal-meta {
   padding: 8px 14px;
   border: 1px solid #2c3540;
@@ -683,6 +698,15 @@ section {
   overflow-x: auto;
   border-radius: 0 0 var(--radius) var(--radius);
   background-color: var(--ink-deep);
+  background-image:
+    linear-gradient(to right, var(--ink-deep), var(--ink-deep)),
+    linear-gradient(to right, var(--ink-deep), var(--ink-deep)),
+    linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)),
+    linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 26px 100%, 26px 100%, 16px 100%, 16px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 
 .terminal code {

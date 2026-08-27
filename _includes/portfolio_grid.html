@@ -27,10 +27,16 @@
         </p>
       </div>
       <div class="featured-visual">
-        {% if featured.terminal_meta %}
-        <div class="terminal-meta">{{ featured.terminal_meta }}</div>
-        {% endif %}
-        <pre class="terminal"><code>{{ featured.terminal | escape }}</code></pre>
+        {%- comment -%}
+        Wrapped so the panel can shrink to the table's width instead of
+        stretching across the card when the layout stacks.
+        {%- endcomment -%}
+        <div class="terminal-block">
+          {% if featured.terminal_meta %}
+          <div class="terminal-meta">{{ featured.terminal_meta }}</div>
+          {% endif %}
+          <pre class="terminal"><code>{{ featured.terminal | escape }}</code></pre>
+        </div>
         {% if featured.caption %}
         <p class="terminal-caption">{{ featured.caption }}</p>
         {% endif %}
