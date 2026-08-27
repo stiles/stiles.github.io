@@ -1,12 +1,12 @@
 # Site settings
 title: Matt Stiles
 domain: mattstiles.me
-home: Howdy.
+home: "I'm a journalist who writes software."
 email: mattstiles@gmail.com
 url: https://mattstiles.me
-description: "Matt Stiles, LA-based data journalist"
+description: "Matt Stiles is a senior editor on CNN's visuals team who builds open-source tools for reporting."
 keywords: "data journalism, data science, python, data visualization, GIS"
-skills: "I'm a hacker journalist based in Los Angeles."
+skills: "Senior editor on CNN's visuals team, in Los Angeles. Nobody assigns the open-source part — that's everything below."
 meta_author: Matt Stiles
 
 # Google webmaster tools
