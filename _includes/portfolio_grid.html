@@ -72,7 +72,7 @@
         {% else %}
         <div class="work-textcard">
           <h4 class="work-title">{{ project.title }}</h4>
-          <p>{{ project.blurb | strip_html | truncate: 140 }}</p>
+          <p>{{ project.blurb | strip_html | truncatewords: 24 }}</p>
           <div class="work-textcard-foot">
             <span class="work-tools">{{ project.tools | join: ", " }}</span>
             {% if project.note %}<span class="work-note">{{ project.note }}</span>{% endif %}
