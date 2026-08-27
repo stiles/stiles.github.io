@@ -1,29 +1,31 @@
 <section id="contact" class="contact-section">
   <div class="container">
-    <div class="section-head">
-      <span class="section-label">Hello</span>
-      <h2 class="section-title">Let's talk</h2>
-      <p>Have a question? Want to work together? Send me a message.</p>
-    </div>
+    <div class="contact-inner">
+      <div class="section-head">
+        <span class="section-label">Hello</span>
+        <h2 class="section-title">Let's talk</h2>
+        <p>Have a question, a tool that's broken, or something you want built? Send me a message.</p>
+      </div>
 
-    <form action="//formspree.io/f/xrgnapew" method="POST" class="contact-form">
-      <div class="field">
-        <label for="name">Your name</label>
-        <input type="text" name="name" id="name" autocomplete="name" required>
-      </div>
-      <div class="field">
-        <label for="email">Email address</label>
-        <input type="email" name="_replyto" id="email" autocomplete="email" required>
-      </div>
-      <div class="field">
-        <label for="message">Your message</label>
-        <textarea rows="4" name="message" id="message" required></textarea>
-      </div>
-      <input type="hidden" name="_subject" value="New email from your website!">
-      <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
-      <button type="submit" class="btn-submit">
-        Send message {% include icon.html name="send" size=17 %}
-      </button>
-    </form>
+      <form action="//formspree.io/f/xrgnapew" method="POST" class="contact-form">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" name="name" id="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" name="_replyto" id="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea rows="4" name="message" id="message" required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New email from your website!">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true">
+        <button type="submit" class="btn-submit">
+          Send message {% include icon.html name="send" size=17 %}
+        </button>
+      </form>
+    </div>
   </div>
 </section>

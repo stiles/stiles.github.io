@@ -30,8 +30,10 @@ disqus_shortname: myshortname
 color:
   # Signal green sampled from the chart dots in Mound's own plots, so the site
   # and the graphics palette share a hue. Ink and greys follow moundcli.com.
-  primary: 3D8162
-  primary-deep: 30654D
+  # Nudged a shade darker than Mound's #3D8162 so it clears AA on the warm
+  # paper surfaces too, not just on white.
+  primary: 3A7B5E
+  primary-deep: 2E6149
   secondary: 101828
   secondary-dark: 0A0F1C
 

@@ -33,7 +33,7 @@
 
   --text: #364153;
   --text-soft: #4a5565;
-  --text-faint: #6a7282;
+  --text-faint: #67707e;
   --rule: #e5e7eb;
   --rule-strong: #d1d5dc;
   --paper: #ffffff;
@@ -158,14 +158,65 @@ button {
 }
 
 section {
-  padding: 72px 0;
+  padding: 64px 0;
   /* Offsets the fixed nav when jumping to an anchor. */
   scroll-margin-top: var(--nav-h);
 }
 
+/* Varied on purpose. Four identically padded bands was most of why the page
+   read as a template: a dense work index, a roomier about, a tighter contact. */
+#portfolio {
+  padding-top: 56px;
+  padding-bottom: 72px;
+}
+
+.about-section {
+  padding: 88px 0;
+  background-color: var(--paper-soft);
+}
+
+.about-columns {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* 65-75 characters, rather than running the full column width. */
+.about-columns p {
+  max-width: 68ch;
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+.about-columns a {
+  font-weight: 550;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-columns a:hover {
+  color: var(--primary-deep);
+}
+
+.contact-section {
+  padding: 72px 0;
+  background-color: var(--paper);
+}
+
 @media (min-width: 768px) {
-  section {
-    padding: 96px 0;
+  #portfolio {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .about-section {
+    padding: 112px 0;
+  }
+
+  .contact-section {
+    padding: 88px 0;
   }
 }
 
@@ -189,12 +240,30 @@ section {
 }
 
 .nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: var(--step-1);
   font-weight: 650;
   letter-spacing: -0.01em;
   color: #fff;
   text-decoration: none;
   transition: font-size 0.25s ease;
+}
+
+/* The avatar lives here now rather than as a 150px medallion in the hero,
+   which is what kept the work grid below the fold. */
+.nav-avatar {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  transition: width 0.25s ease, height 0.25s ease;
+}
+
+.site-nav.is-scrolled .nav-avatar {
+  width: 26px;
+  height: 26px;
 }
 
 .site-nav.is-scrolled {
@@ -269,85 +338,43 @@ section {
 
 /* ----------------------------------------------------------------- header */
 
+/* Kept deliberately short. On a 800px-tall window the work grid should already
+   be starting, so the page opens on a claim plus evidence rather than a bio. */
 .site-header {
   padding-top: var(--nav-h);
-  text-align: center;
   color: #fff;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-deep) 100%);
 }
 
 .site-header .container {
-  padding-top: 64px;
-  padding-bottom: 56px;
+  padding-top: 60px;
+  padding-bottom: 64px;
 }
 
 .hero {
-  max-width: 620px;
-  margin: 0 auto 44px;
-}
-
-.hero-avatar {
-  width: 130px;
-  height: 130px;
-  margin-bottom: 20px;
-  border: 4px solid rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  max-width: 760px;
 }
 
 .hero-title {
-  margin: 0 0 12px;
-  font-size: var(--step-4);
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4.6vw, 3.15rem);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   color: #fff;
 }
 
 .hero-sub {
-  margin: 0;
-  font-size: var(--step-1);
+  max-width: 54ch;
+  margin: 0 0 30px;
+  font-size: var(--step-2);
   line-height: 1.5;
   color: #fff;
-}
-
-.about {
-  max-width: 900px;
-  margin: 0 auto;
-  padding-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.about-columns {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 36px;
-  text-align: left;
-}
-
-.about-columns p {
-  margin: 0;
-  font-size: var(--step-0);
-  line-height: 1.75;
-  color: #fff;
-}
-
-.about-columns a {
-  font-weight: 550;
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.about-columns a:hover {
-  opacity: 0.8;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  justify-content: center;
 }
 
 .btn {
@@ -367,7 +394,7 @@ section {
 }
 
 .btn-solid {
-  color: var(--ink);
+  color: var(--primary-deep);
   background-color: #fff;
 }
 
@@ -389,35 +416,15 @@ section {
 
 @media (min-width: 768px) {
   .site-header .container {
-    padding-top: 88px;
-    padding-bottom: 76px;
-  }
-
-  .hero-avatar {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 24px;
-  }
-
-  .hero-title {
-    font-size: var(--step-5);
-  }
-
-  .hero-sub {
-    font-size: var(--step-2);
-  }
-
-  .about-columns {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 3rem;
+    padding-top: 76px;
+    padding-bottom: 84px;
   }
 }
 
 /* --------------------------------------------------------- section titles */
 
 .section-head {
-  margin-bottom: 44px;
-  text-align: center;
+  margin-bottom: 40px;
 }
 
 .section-label {
@@ -437,8 +444,8 @@ section {
 }
 
 .section-head p {
-  max-width: 46ch;
-  margin: 12px auto 0;
+  max-width: 48ch;
+  margin: 12px 0 0;
   color: var(--text-soft);
 }
 
@@ -465,6 +472,7 @@ section {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
 
 @media (min-width: 940px) {
   .work-row {
@@ -869,9 +877,26 @@ section {
   background-color: var(--paper-soft);
 }
 
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 880px) {
+  .contact-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-inner .section-head {
+    margin-bottom: 0;
+  }
+}
+
 .contact-form {
-  max-width: 480px;
-  margin: 0 auto;
+  max-width: 520px;
 }
 
 .contact-form label {

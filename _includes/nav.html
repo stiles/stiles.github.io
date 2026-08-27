@@ -1,6 +1,9 @@
 <nav class="site-nav">
   <div class="container">
-    <a class="nav-brand" href="#page-top">{{ site.title }}</a>
+    <a class="nav-brand" href="#page-top">
+      <img class="nav-avatar" src="{{ '/img/profile.png' | relative_url }}" alt="" width="30" height="30">
+      <span>{{ site.title }}</span>
+    </a>
 
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
       <span class="visually-hidden">Menu</span>
@@ -8,8 +11,8 @@
     </button>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#portfolio">Projects</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
