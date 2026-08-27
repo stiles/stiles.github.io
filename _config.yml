@@ -63,13 +63,19 @@ credits: 'Made with Jekyll'
 markdown: kramdown
 permalink: pretty
 
-# for posts
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      permalink: "/posts/:title/"
+# Repo housekeeping that shouldn't be served from the live site.
+exclude:
+  - PLANNING.md
+  - README.md
+  - Rakefile
+  - Gemfile
+  - Gemfile.lock
+  - LICENCE
+  - freelancer-theme-jekyll.gemspec
+  - img/raw
+  - mail
+  - vendor
+  - .bundle
 
 remote_theme: jeromelachaud/freelancer-theme
 
