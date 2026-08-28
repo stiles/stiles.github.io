@@ -1,0 +1,13 @@
+{%- comment -%}
+Joins a project's capability tags with its domain, since Liquid has no clean way
+to append a scalar to an array inline. Splitting on a delimiter that can't occur
+turns the lone domain string into a one-item array so concat will take it.
+
+  {% include tags.html project=project %}
+{%- endcomment -%}
+{%- assign list = include.project.does -%}
+{%- if include.project.domain -%}
+{%- assign dom = include.project.domain | split: "||" -%}
+{%- assign list = list | concat: dom -%}
+{%- endif -%}
+{{- list | join: ", " -}}

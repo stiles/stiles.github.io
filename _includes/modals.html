@@ -27,11 +27,7 @@ a backdrop without a library, which is what let Bootstrap's modal JS go.
       <p class="install"><code>{{ project.install }}</code></p>
       {% endif %}
       <p>{{ project.blurb }}</p>
-      {% if project.tools %}
-      <ul class="tags">
-        {% for tool in project.tools %}<li class="tag">{{ tool }}</li>{% endfor %}
-      </ul>
-      {% endif %}
+      {% include tag_block.html project=project %}
       {% if project.url or project.repo or project.writeup %}
       <p class="links">
         {% if project.url %}<a href="{{ project.url }}">Visit site {% include icon.html name="arrow-right" size=15 %}</a>{% endif %}

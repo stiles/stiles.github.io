@@ -964,6 +964,21 @@ section {
   border-radius: 20px;
 }
 
+/* The subject sits on a different axis from what a project does, so it gets a
+   tint rather than another identical pill. */
+.tag-domain {
+  color: var(--primary-deep);
+  background-color: #eef5f1;
+  border-color: #b6d5c5;
+}
+
+.built {
+  margin: 12px 0 18px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
 .badge {
   display: inline-block;
   padding: 4px 11px;

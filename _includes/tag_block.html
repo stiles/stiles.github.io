@@ -1,0 +1,16 @@
+{%- comment -%}
+The expanded tag treatment for the featured card and the modals, where there's
+room to separate what a project does from what it's made of. Cards get the
+condensed version from tags.html instead.
+
+  {% include tag_block.html project=project %}
+{%- endcomment -%}
+{%- if include.project.does -%}
+<ul class="tags">
+  {%- for tag in include.project.does %}<li class="tag">{{ tag }}</li>{% endfor -%}
+  {%- if include.project.domain %}<li class="tag tag-domain">{{ include.project.domain }}</li>{% endif -%}
+</ul>
+{%- endif -%}
+{%- if include.project.built %}
+<p class="built">Built with {{ include.project.built | join: ", " }}</p>
+{%- endif -%}

@@ -15,11 +15,7 @@
         <p class="install"><code>{{ featured.install }}</code></p>
         {% endif %}
         <p>{{ featured.blurb }}</p>
-        {% if featured.tools %}
-        <ul class="tags">
-          {% for tool in featured.tools %}<li class="tag">{{ tool }}</li>{% endfor %}
-        </ul>
-        {% endif %}
+        {% include tag_block.html project=featured %}
         <p class="links">
           {% if featured.url %}<a href="{{ featured.url }}">Visit site {% include icon.html name="arrow-right" size=15 %}</a>{% endif %}
           {% if featured.repo %}<a href="{{ featured.repo }}">GitHub</a>{% endif %}
@@ -90,7 +86,7 @@
         </div>
         <div class="work-meta">
           <h4 class="work-title">{{ project.title }}</h4>
-          <span class="work-tools">{{ project.tools | join: ", " }}</span>
+          <span class="work-tools">{% include tags.html project=project %}</span>
           {% if project.note %}<span class="work-note">{{ project.note }}</span>{% endif %}
         </div>
         {% else %}
@@ -98,7 +94,7 @@
           <h4 class="work-title">{{ project.title }}</h4>
           <p>{{ project.blurb | strip_html | truncatewords: 24 }}</p>
           <div class="work-textcard-foot">
-            <span class="work-tools">{{ project.tools | join: ", " }}</span>
+            <span class="work-tools">{% include tags.html project=project %}</span>
             {% if project.note %}<span class="work-note">{{ project.note }}</span>{% endif %}
           </div>
         </div>

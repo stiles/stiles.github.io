@@ -16,7 +16,19 @@
 #   featured    optional, true for the one lede card
 #   terminal    optional, replaces the image with a code block (featured only)
 #   caption     optional, explains the terminal block
-#   tools       optional, list
+#
+# Three tag axes, kept separate because they answer different questions. Cards
+# show the first two; the stack only appears in the modal, where there's room.
+#
+#   does        required, what it produces. One or two of:
+#                 Data extraction, Mapping, Data viz, Analysis, Reference
+#               Deliberately no "automation" or "interactive" term -- the bucket
+#               heading above the card already says that.
+#   domain      optional, the subject. Aviation, Baseball and Los Angeles are
+#               real clusters; the rest are one-offs that still tell a reader
+#               what they're looking at. Omit for general-purpose tools.
+#   built       required, the stack. Verified against each repo's manifest
+#               rather than assumed, so keep it that way when editing.
 
 # ---------------------------------------------------------------- featured
 - title: Mound
@@ -58,7 +70,9 @@
   url: https://www.moundcli.com
   repo: https://github.com/stiles/mound
   writeup: https://www.moundcli.com/examples/ohtani-spin-chase
-  tools: [Python, CLI]
+  does: [Data extraction, Analysis, Data viz]
+  domain: Baseball
+  built: [Python, CLI, matplotlib]
 
 # ------------------------------------------------- things other people use
 - title: ezesri
@@ -75,7 +89,9 @@
   url: https://www.ezesri.com
   repo: https://github.com/stiles/ezesri
   writeup: https://medium.com/@stiles/unlock-troves-of-mapping-data-with-ezesri-a-python-package-for-exploring-and-extracting-esri-0fec4c7df2fa
-  tools: [Python]
+  does: [Data extraction]
+  domain: Government data
+  built: [Python, CLI, GeoPandas]
 
 - title: streetview-dl
   bucket: other-people-use
@@ -89,7 +105,8 @@
   alt: Street View panorama of the Sixth Street Viaduct in Los Angeles
   repo: https://github.com/stiles/streetview-dl
   writeup: https://medium.com/@stiles/download-high-resolution-google-street-view-panoramas-in-the-command-line-a800ef16f270
-  tools: [Python, CLI]
+  does: [Data extraction]
+  built: [Python, CLI]
 
 - title: pyfr24
   bucket: other-people-use
@@ -104,7 +121,9 @@
   url: https://pyfr24.readthedocs.io
   repo: https://github.com/stiles/pyfr24
   writeup: https://medium.com/@stiles/from-flight-number-to-rich-data-using-pyfr24-for-aviation-analysis-10f8124f80f1
-  tools: [Python, CLI]
+  does: [Data extraction, Mapping]
+  domain: Aviation
+  built: [Python, CLI, matplotlib]
 
 - title: flight-tracer
   bucket: other-people-use
@@ -117,7 +136,9 @@
   h: 600
   alt: Map tracing five United Airlines flight paths across the United States
   repo: https://github.com/stiles/flight-tracer
-  tools: [Python]
+  does: [Data extraction, Mapping]
+  domain: Aviation
+  built: [Python]
 
 - title: chorokit
   bucket: other-people-use
@@ -130,7 +151,8 @@
   h: 600
   alt: County-level choropleth map of farmland as a share of county land area, densest across the Plains
   repo: https://github.com/stiles/chorokit
-  tools: [Python]
+  does: [Data viz, Mapping]
+  built: [Python, matplotlib, GeoPandas]
 
 - title: hangarbay
   bucket: other-people-use
@@ -143,7 +165,9 @@
   h: 600
   alt: Terminal output from a hangarbay registry lookup, listing the owner, model and airworthiness dates for an LAPD helicopter
   repo: https://github.com/stiles/hangarbay
-  tools: [Python]
+  does: [Data extraction, Analysis]
+  domain: Aviation
+  built: [Python, CLI]
 
 - title: chartfeed
   bucket: other-people-use
@@ -155,7 +179,8 @@
   h: 600
   alt: The Chartfeed gallery, with a search box and category filters above a dark grid of chart thumbnails
   repo: https://github.com/stiles/chartfeed
-  tools: [JavaScript, GitHub Actions]
+  does: [Data viz]
+  built: [Svelte, GitHub Actions]
 
 - title: notebooks
   bucket: other-people-use
@@ -167,18 +192,25 @@
   h: 600
   alt: An LA Street Names Jupyter notebook, with its summary cell above Python import and pandas display settings
   repo: https://github.com/stiles/notebooks
-  tools: [Python, Jupyter, pandas]
+  does: [Reference, Analysis]
+  built: [Python, Jupyter, pandas]
 
 # The package was renamed from scorebug, which is still on PyPI at an older
 # version. Install line follows the current name.
-- title: Utilityman
+- title: utilityman
   bucket: other-people-use
   install: pip install utilityman
   blurb: >-
     Follows a live MLB game in your terminal — play-by-play, a compact scoreboard
     and scoring plays as they happen — without opening a browser.
+  img: utilityman
+  w: 900
+  h: 600
+  alt: Terminal output from a utilityman game, showing the play-by-play, a compact scoreboard and scoring plays as they happen
   repo: https://github.com/stiles/utilityman
-  tools: [Python, CLI]
+  does: [Data extraction]
+  domain: Baseball
+  built: [Python, CLI]
 
 # ------------------------------------------------ things that run themselves
 - title: DodgersData.bot
@@ -193,7 +225,9 @@
   alt: The DodgersData.bot dashboard, showing a run differential chart and the season record
   url: https://dodgersdata.bot
   repo: https://github.com/stiles/dodgers
-  tools: [Python, pandas, D3]
+  does: [Data viz, Analysis]
+  domain: Baseball
+  built: [Python, pandas, D3]
 
 - title: Trump Truth Social archive
   bucket: runs-itself
@@ -201,8 +235,14 @@
     An auto-updating archive of President Trump's Truth Social posts, built when
     there was no reliable public record of them.
   note: Now maintained by CNN
+  img: trump-truth-social-archive
+  w: 900
+  h: 600
+  alt: A screenshot of the Trump Truth Social archive, showing a post and its engagement metrics.
   repo: https://github.com/stiles/trump-truth-social-archive
-  tools: [Python]
+  does: [Data extraction]
+  domain: Politics
+  built: [Python]
 
 - title: Locations
   bucket: runs-itself
@@ -214,7 +254,9 @@
   h: 600
   alt: Dot density map of the United States showing thousands of retail locations
   repo: https://github.com/stiles/locations
-  tools: [Python, web scraping]
+  does: [Data extraction, Mapping]
+  domain: Retail
+  built: [Python, GeoPandas]
 
 - title: LAPD Choppers
   bucket: runs-itself
@@ -227,7 +269,9 @@
   h: 600
   alt: An LAPD helicopter over the Los Angeles skyline
   repo: https://github.com/stiles/lapd-choppers
-  tools: [Python, GIS]
+  does: [Mapping, Analysis]
+  domain: Los Angeles
+  built: [Python, GeoPandas]
 
 - title: North Korea trackers
   bucket: runs-itself
@@ -235,9 +279,15 @@
     Two pipelines running side by side: one archives hundreds of provocative
     actions, from missile launches to nuclear tests, and the other scrapes state
     media headlines as they publish.
+  img: north-korea
+  w: 900
+  h: 600
+  alt: North Korean leader Kim Jong-un is seated in a room with other North Korean leaders, according to KCNA.
   # TODO: one card for two repos. Second repo is stiles/north-korea-news.
   repo: https://github.com/stiles/north-korea-provocations
-  tools: [Python]
+  does: [Data extraction]
+  domain: Foreign affairs
+  built: [Python]
 
 - title: survivoR2py
   bucket: runs-itself
@@ -245,8 +295,14 @@
     Converts an R-only archive of every Survivor castaway, challenge and vote
     into CSV and JSON on a daily schedule, so the show's full record is usable
     without knowing R.
+  img: survivor2py
+  w: 900
+  h: 600
+  alt: A screenshot of an object from the database's contestant table showing the first US winner, Richard Hatch.
   repo: https://github.com/stiles/survivoR2py
-  tools: [Python, GitHub Actions]
+  does: [Data extraction]
+  domain: Television
+  built: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
 - title: JacarandaMap
@@ -260,7 +316,9 @@
   alt: Map of central Los Angeles with purple dots marking jacaranda trees
   url: https://jacarandamap.com
   repo: https://github.com/stiles/la-trees
-  tools: [Python, GIS]
+  does: [Mapping]
+  domain: Los Angeles
+  built: [Mapbox GL, Python]
 
 - title: BirthdayRank
   bucket: click-on
@@ -273,7 +331,9 @@
   alt: Calendar heat map of US birth frequency for every day of the year
   url: https://birthdayrank.com
   repo: https://github.com/stiles/birthdays
-  tools: [Svelte, D3]
+  does: [Data viz]
+  domain: Demographics
+  built: [Svelte, D3]
 
 - title: What's My LA
   bucket: click-on
@@ -286,4 +346,6 @@
   alt: The What's My LA home page, with an address search field
   url: https://www.whatsmyla.com
   repo: https://github.com/stiles/whats-my-la
-  tools: [Svelte, GIS]
+  does: [Mapping]
+  domain: Los Angeles
+  built: [Svelte, Mapbox GL]
