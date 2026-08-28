@@ -16,7 +16,9 @@ hats:
 email: mattstiles@gmail.com
 url: https://mattstiles.me
 description: "Matt Stiles is a senior editor on CNN's visuals team who builds open-source tools for reporting."
-skills: "Reporting, editing, graphics and the tools behind them — long enough that they stopped being separate jobs. Nobody assigns the open-source part, and that's everything below."
+# The headline enumerates the disciplines, so this doesn't. It adds the one
+# thing neither the headline nor the About section says up top: how long.
+skills: "Two decades in newsrooms. Nobody assigns the open-source part."
 meta_author: Matt Stiles
 
 # Google webmaster tools

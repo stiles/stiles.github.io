@@ -35,6 +35,9 @@
   --text-soft: #4a5565;
   --text-faint: #67707e;
   --rule: #e5e7eb;
+  /* Tint for the cycling half of the hero headline. Set to #fff to turn the
+     effect off. */
+  --hat: #cfefdd;
   --rule-strong: #d1d5dc;
   --paper: #ffffff;
   /* Warm off-white rather than grey, following moundcli.com. */
@@ -385,8 +388,16 @@ section {
   display: block;
 }
 
+/* The changing half is tinted so the swap reads as deliberate rather than as a
+   glitch. Only ever used at headline size, where AA wants 3:1; this is 4.08:1
+   against the lighter end of the gradient. */
+.hero-hats {
+  color: var(--hat);
+}
+
 /* Live: every phrase shares one grid cell, so the block is as tall as the
-   tallest phrase and nothing shifts as they swap. */
+   tallest phrase and nothing shifts as they swap. A pure cross-fade, with no
+   travel -- see the note in site.js about why that matters. */
 .hero-hats.is-live {
   display: grid;
 }
@@ -394,43 +405,11 @@ section {
 .hero-hats.is-live .hat {
   grid-area: 1 / 1;
   opacity: 0;
-  transform: translateY(0.22em);
-  transition: opacity 0.45s ease, transform 0.45s ease;
+  transition: opacity 0.5s ease;
 }
 
 .hero-hats.is-live .hat.is-current {
   opacity: 1;
-  transform: none;
-}
-
-/* WCAG 2.2.2: content that animates indefinitely needs a way to stop it. */
-.hats-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0 0 18px;
-  padding: 5px 12px 5px 10px;
-  font-family: inherit;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.hats-toggle:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.7);
-}
-
-.hats-toggle[hidden] {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -440,7 +419,6 @@ section {
 
   .hero-hats.is-live .hat {
     opacity: 1;
-    transform: none;
     transition: none;
   }
 }

@@ -35,81 +35,34 @@
     window.addEventListener("scroll", syncNav, { passive: true });
   }
 
-  /* Rotating hero phrases.
+  /* Hero headline phrases.
+   *
+   * Runs one pass and stops on the last phrase. That isn't only an editorial
+   * choice -- it's what lets the hero skip a pause button. WCAG 2.2.2 wants a
+   * stop mechanism for anything that either moves for more than five seconds or
+   * auto-updates at all, and an endless loop trips both. One finite pass with a
+   * pure cross-fade (no travel, see style.css) trips neither: nothing moves,
+   * and the updating ends rather than continuing under the visitor.
    *
    * Progressive enhancement: the markup is a stacked list of all four phrases,
-   * which is what shows with no JS. Only here do they collapse into one line
-   * that cycles, and only if the visitor hasn't asked for less motion. */
+   * which is what shows with no JS or with reduced motion. Only here do they
+   * collapse onto one line. */
   var hats = document.querySelector(".hero-hats");
-  var hatsToggle = document.querySelector(".hats-toggle");
   var calmer = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (hats && hatsToggle) {
+  if (hats) {
     var phrases = hats.querySelectorAll(".hat");
-    var label = hatsToggle.querySelector(".hats-toggle-label");
-    var PAUSE_ICON =
-      '<rect x="7" y="5" width="3.6" height="14" rx="1"></rect>' +
-      '<rect x="13.4" y="5" width="3.6" height="14" rx="1"></rect>';
-    var PLAY_ICON =
-      '<path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"></path>';
-
-    var timer = null;
-    var at = 0;
-    var userPaused = false;
-    var hovering = false;
-
-    var advance = function () {
-      phrases[at].classList.remove("is-current");
-      at = (at + 1) % phrases.length;
-      phrases[at].classList.add("is-current");
-    };
-
-    /* One place decides whether the timer runs, so hovering can suspend the
-     * cycle without the button claiming the visitor paused it. */
-    var refresh = function () {
-      var shouldRun = !userPaused && !hovering;
-      if (shouldRun && !timer) timer = window.setInterval(advance, 2600);
-      if (!shouldRun && timer) {
-        window.clearInterval(timer);
-        timer = null;
-      }
-      label.textContent = userPaused ? "Play" : "Pause";
-      var svg = hatsToggle.querySelector("svg");
-      if (svg) svg.innerHTML = userPaused ? PLAY_ICON : PAUSE_ICON;
-    };
 
     if (phrases.length > 1 && !calmer.matches) {
       hats.classList.add("is-live");
-      hatsToggle.hidden = false;
-      refresh();
 
-      hatsToggle.addEventListener("click", function () {
-        userPaused = !userPaused;
-        refresh();
-      });
-
-      /* Suspending on hover and focus is a courtesy; the button is the control
-       * WCAG asks for. */
-      var hero = hats.closest(".hero");
-      var setHover = function (state) {
-        return function () {
-          hovering = state;
-          refresh();
-        };
-      };
-      hero.addEventListener("mouseenter", setHover(true));
-      hero.addEventListener("mouseleave", setHover(false));
-      hero.addEventListener("focusin", setHover(true));
-      hero.addEventListener("focusout", setHover(false));
-
-      /* Honour the preference if it changes mid-session. */
-      calmer.addEventListener("change", function (event) {
-        if (!event.matches) return;
-        userPaused = true;
-        refresh();
-        hats.classList.remove("is-live");
-        hatsToggle.hidden = true;
-      });
+      var at = 0;
+      var timer = window.setInterval(function () {
+        phrases[at].classList.remove("is-current");
+        at += 1;
+        phrases[at].classList.add("is-current");
+        if (at === phrases.length - 1) window.clearInterval(timer);
+      }, 2600);
     }
   }
 
