@@ -7,11 +7,10 @@ tagline: "Data journalist and software builder"
 domain: mattstiles.me
 home: "I'm a journalist who"
 # Cycled in the hero. Kept similar in length so the line doesn't jump, and
-# phrased verb-plus-plural-noun so they stay parallel. Swap "edits teams" for
-# "leads teams" if you want the idiomatic version.
+# phrased verb-plus-plural-noun so they stay parallel.
 hats:
   - writes stories
-  - edits teams
+  - leads teams
   - creates visuals
   - builds software
 email: mattstiles@gmail.com
