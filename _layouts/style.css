@@ -520,13 +520,18 @@ section {
 
 /* -------------------------------------------------------------- work grid */
 
+/* Sits between the section title and the card titles, and needs to read that
+   way against a dense field of thumbnails. It was set to the same size and
+   weight as the card titles it introduces, which flattened h2/h3/h4 into two
+   visible levels. The rule is ink rather than grey for the same reason: at this
+   density a hairline is the group boundary, so it has to be legible as one. */
 .bucket-title {
-  margin: 0 0 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
-  font-size: var(--step-1);
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  margin: 0 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  font-size: var(--step-3);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .work-row {
