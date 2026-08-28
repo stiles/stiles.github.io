@@ -113,8 +113,8 @@
     and legend chosen so the map is publishable on the first render.
   img: chorokit
   w: 900
-  h: 650
-  alt: County-level choropleth map of the 2024 presidential vote margin
+  h: 600
+  alt: County-level choropleth map of farmland as a share of county land area, densest across the Plains
   repo: https://github.com/stiles/chorokit
   tools: [Python]
 
@@ -124,6 +124,10 @@
   blurb: >-
     A reproducible workflow for the FAA aircraft registry: download the raw files,
     normalize them into typed tables and find out who owns a tail number.
+  img: hangarbay
+  w: 900
+  h: 600
+  alt: Terminal output from a hangarbay registry lookup, listing the owner, model and airworthiness dates for an LAPD helicopter
   repo: https://github.com/stiles/hangarbay
   tools: [Python]
 
@@ -132,6 +136,10 @@
   blurb: >-
     A responsive gallery of your Datawrapper charts that rebuilds itself every day
     through GitHub Actions.
+  img: chartfeed
+  w: 900
+  h: 600
+  alt: The Chartfeed gallery, with a search box and category filters above a dark grid of chart thumbnails
   repo: https://github.com/stiles/chartfeed
   tools: [JavaScript, GitHub Actions]
 
@@ -140,6 +148,10 @@
   blurb: >-
     Hundreds of worked Jupyter notebooks for analysis, charts and maps in Python.
     This is the reference I actually send people who ask how to start.
+  img: notebooks
+  w: 900
+  h: 600
+  alt: An LA Street Names Jupyter notebook, with its summary cell above Python import and pandas display settings
   repo: https://github.com/stiles/notebooks
   tools: [Python, Jupyter, pandas]
 
