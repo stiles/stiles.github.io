@@ -20,7 +20,10 @@ skills: "Two decades of data and visual storytelling in newsrooms. I also build 
 meta_author: Matt Stiles
 
 # Google webmaster tools
-google_verify:
+google_verify: cKq7dy00rrrT_PAxdG1FF66HoKkunuriNarzSJ8XubQ
+
+# GA4 measurement ID. Only loads in production; see _includes/analytics.html
+google_analytics: G-D2KXLG5G0H
 
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
