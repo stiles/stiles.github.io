@@ -16,9 +16,10 @@ hats:
 email: mattstiles@gmail.com
 url: https://mattstiles.me
 description: "Matt Stiles is a senior editor on CNN's visuals team who builds open-source tools for reporting."
-# The headline enumerates the disciplines, so this doesn't. It adds the one
-# thing neither the headline nor the About section says up top: how long.
-skills: "Two decades in newsrooms. Nobody assigns the open-source part."
+# The headline enumerates the disciplines, so this doesn't. First sentence adds
+# the depth and the specificity the headline lacks; second states the argument
+# the whole grid below rests on, which nothing else on the visible page makes.
+skills: "Two decades of data and visual storytelling in newsrooms. On my own time, I build open-source tools that help people find and make sense of data."
 meta_author: Matt Stiles
 
 # Google webmaster tools
