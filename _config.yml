@@ -1,12 +1,12 @@
 # Site settings
 title: Matt Stiles
 domain: mattstiles.me
-home: "I'm a journalist who writes software."
+home: "I'm a journalist who writes code."
 email: mattstiles@gmail.com
 url: https://mattstiles.me
 description: "Matt Stiles is a senior editor on CNN's visuals team who builds open-source tools for reporting."
 keywords: "data journalism, data science, python, data visualization, GIS"
-skills: "Senior editor on CNN's visuals team, in Los Angeles. Nobody assigns the open-source part — that's everything below."
+skills: "Reporting, editing, graphics and the tools behind them — long enough that they stopped being separate jobs. Nobody assigns the open-source part, and that's everything below."
 meta_author: Matt Stiles
 
 # Google webmaster tools
