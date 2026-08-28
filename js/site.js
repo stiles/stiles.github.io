@@ -37,33 +37,30 @@
 
   /* Hero headline phrases.
    *
-   * Cycles indefinitely, which is why the pause button exists. WCAG 2.2.2 gives
-   * moving content a five-second grace period but gives auto-updating content
-   * none: text that changes on its own, forever, alongside other content needs
-   * a mechanism to pause, stop or hide it. prefers-reduced-motion and
-   * pause-on-hover don't satisfy that, since neither is a persistent control.
-   * The transition is still a pure cross-fade with no travel, so the moving
-   * clause stays out of it entirely.
+   * Cycles indefinitely with no pause control. That's a known, deliberate
+   * deviation from WCAG 2.2.2, which wants a way to stop content that
+   * auto-updates -- not an oversight. It matches moundcli.com, where the same
+   * headline ships the same way.
+   *
+   * Every mitigation that doesn't need a visible control is here. The
+   * transition is a pure cross-fade with no travel, so the criterion's
+   * five-second moving-content clause never applies at all; only the
+   * auto-updating clause does. The whole stack is aria-hidden behind one static
+   * sentence, so assistive tech reads the claim once instead of hearing a word
+   * change under it. prefers-reduced-motion stops it dead. And the cycle
+   * suspends on hover, on focus and whenever the hero leaves the viewport, so
+   * it isn't moving at the edge of vision while someone reads the page below --
+   * which is the distraction the criterion is actually about.
    *
    * Progressive enhancement: the markup is a stacked list of all four phrases,
-   * which is what shows with no JS or with reduced motion. Only here do they
-   * collapse onto one line. */
+   * which is what shows with no JS or with reduced motion. */
   var hats = document.querySelector(".hero-hats");
-  var hatsToggle = document.querySelector(".hats-toggle");
   var calmer = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (hats && hatsToggle) {
+  if (hats) {
     var phrases = hats.querySelectorAll(".hat");
-    var label = hatsToggle.querySelector(".hats-toggle-label");
-    var PAUSE_ICON =
-      '<rect x="7" y="5" width="3.6" height="14" rx="1"></rect>' +
-      '<rect x="13.4" y="5" width="3.6" height="14" rx="1"></rect>';
-    var PLAY_ICON =
-      '<path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"></path>';
-
     var timer = null;
     var at = 0;
-    var userPaused = false;
     var hovering = false;
     var offscreen = false;
 
@@ -73,36 +70,21 @@
       phrases[at].classList.add("is-current");
     };
 
-    /* Three things can stop the cycle, but only the button should relabel it,
-     * so one function owns the timer and the button reports userPaused alone.
-     * Otherwise hovering would leave the control claiming a state the visitor
-     * never chose. */
+    /* Two independent reasons to hold, so one function owns the timer rather
+     * than each handler starting and stopping it behind the other's back. */
     var refresh = function () {
-      var run = !userPaused && !hovering && !offscreen;
+      var run = !hovering && !offscreen;
       if (run && !timer) timer = window.setInterval(advance, 3400);
       if (!run && timer) {
         window.clearInterval(timer);
         timer = null;
       }
-      label.textContent = userPaused
-        ? "Play the headline animation"
-        : "Pause the headline animation";
-      var svg = hatsToggle.querySelector("svg");
-      if (svg) svg.innerHTML = userPaused ? PLAY_ICON : PAUSE_ICON;
     };
 
     if (phrases.length > 1 && !calmer.matches) {
       hats.classList.add("is-live");
-      hatsToggle.hidden = false;
       refresh();
 
-      hatsToggle.addEventListener("click", function () {
-        userPaused = !userPaused;
-        refresh();
-      });
-
-      /* Courtesies, not the required control: hold while a visitor is reading
-       * the hero, and don't animate to an empty room once it's scrolled past. */
       var hero = hats.closest(".hero");
       var setHover = function (state) {
         return function () {
@@ -124,10 +106,9 @@
 
       calmer.addEventListener("change", function (event) {
         if (!event.matches) return;
-        userPaused = true;
+        hovering = true;
         refresh();
         hats.classList.remove("is-live");
-        hatsToggle.hidden = true;
       });
     }
   }

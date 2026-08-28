@@ -403,37 +403,6 @@ section {
   color: var(--hat);
 }
 
-/* WCAG 2.2.2 requires a stop mechanism for anything that auto-updates
-   indefinitely, so this is load-bearing rather than decorative. Icon only, at
-   caption weight, so it reads as an aside to the headline rather than a third
-   button competing with the two below it. */
-.hats-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  margin: 0 0 16px;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.55);
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.hats-toggle:hover,
-.hats-toggle:focus-visible {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.75);
-}
-
-.hats-toggle[hidden] {
-  display: none;
-}
-
 /* Live: every phrase shares one grid cell, so the block is as tall as the
    tallest phrase and nothing shifts as they swap. A pure cross-fade, with no
    travel -- see the note in site.js about why that matters. */
