@@ -1,7 +1,31 @@
+{%- comment -%}
+The rotating phrases are decorative repetition: assistive tech gets the whole
+list as one sentence and never hears the animation.
+{%- endcomment -%}
+{%- capture hats_sentence -%}
+{%- for hat in site.hats -%}
+{%- if forloop.first -%}{{ hat }}{%- elsif forloop.last %} and {{ hat }}{%- else -%}, {{ hat }}{%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+
 <header class="site-header">
   <div class="container">
     <div class="hero">
-      <h1 class="hero-title">{{ site.home }}</h1>
+      <h1 class="hero-title">
+        <span class="hero-lead">{{ site.home }}</span>
+        <span class="visually-hidden"> {{ hats_sentence }}.</span>
+        <span class="hero-hats" aria-hidden="true">
+          {%- for hat in site.hats %}
+          <span class="hat{% if forloop.first %} is-current{% endif %}">{{ hat }}</span>
+          {%- endfor %}
+        </span>
+      </h1>
+
+      <button type="button" class="hats-toggle" hidden>
+        {% include icon.html name="pause" size=13 %}
+        <span class="hats-toggle-label">Pause</span>
+      </button>
+
       <p class="hero-sub">{{ site.skills }}</p>
       <div class="hero-actions">
         <a href="#portfolio" class="btn btn-solid">View projects</a>

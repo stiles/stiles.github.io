@@ -5,7 +5,15 @@ title: Matt Stiles
 # the on-page copy has moved past it.
 tagline: "Data journalist and software builder"
 domain: mattstiles.me
-home: "I'm a journalist who writes code."
+home: "I'm a journalist who"
+# Cycled in the hero. Kept similar in length so the line doesn't jump, and
+# phrased verb-plus-plural-noun so they stay parallel. Swap "edits teams" for
+# "leads teams" if you want the idiomatic version.
+hats:
+  - writes stories
+  - edits teams
+  - creates visuals
+  - builds software
 email: mattstiles@gmail.com
 url: https://mattstiles.me
 description: "Matt Stiles is a senior editor on CNN's visuals team who builds open-source tools for reporting."
