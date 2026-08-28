@@ -28,6 +28,7 @@
 :root {
   --primary: #{{ site.color.primary }};
   --primary-deep: #{{ site.color.primary-deep }};
+  --primary-bright: #{{ site.color.primary-bright }};
   --ink: #{{ site.color.secondary }};
   --ink-deep: #{{ site.color.secondary-dark }};
 
@@ -754,17 +755,66 @@ section {
   max-width: 100%;
 }
 
-.terminal-meta {
-  padding: 8px 14px;
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
   border: 1px solid #2c3540;
   border-bottom: 0;
   border-radius: var(--radius) var(--radius) 0 0;
+  background-color: #161d27;
+}
+
+.term-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.term-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #39424e;
+}
+
+.term-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  background-color: var(--ink-deep);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Skip doubles as the stop control for the typing sequence, and replay is
+   genuinely wanted on a demo, so one button covers both. */
+.term-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.45);
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.term-btn:hover,
+.term-btn:focus-visible {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.term-btn[hidden] {
+  display: none;
 }
 
 .terminal {
@@ -773,6 +823,11 @@ section {
   padding: 16px 18px;
   overflow-x: auto;
   border-radius: 0 0 var(--radius) var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
+  line-height: 1.75;
+  tab-size: 8;
+  color: #e8ebed;
   background-color: var(--ink-deep);
   background-image:
     linear-gradient(to right, var(--ink-deep), var(--ink-deep)),
@@ -785,12 +840,78 @@ section {
   background-attachment: local, local, scroll, scroll;
 }
 
-.terminal code {
-  display: block;
+.term-step + .term-step {
+  margin-top: 14px;
+}
+
+.term-cmdline,
+.term-out {
   white-space: pre;
-  font-size: 0.71875rem;
-  line-height: 1.75;
+}
+
+.term-prompt {
+  color: var(--primary-bright);
+}
+
+.term-cmd {
+  color: #fff;
+}
+
+.term-out {
+  color: #aab4c0;
+}
+
+/* Only the newest line is white; earlier output recedes so the eye lands on
+   what just appeared. */
+.term-step.out-in .term-out {
   color: #e8ebed;
+}
+
+.term-step.is-past .term-out {
+  color: #8b95a3;
+}
+
+.term-caret {
+  display: none;
+  width: 7px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background-color: var(--primary-bright);
+}
+
+/* Live: the transcript is laid out in full but masked, so revealing a line
+   costs no reflow. visibility, not display, is the whole trick. */
+.terminal.is-live .term-cmdline,
+.terminal.is-live .term-out {
+  visibility: hidden;
+}
+
+.terminal.is-live .term-step.cmd-in .term-cmdline,
+.terminal.is-live .term-step.out-in .term-out {
+  visibility: visible;
+}
+
+.terminal.is-live .term-step.is-typing .term-caret {
+  display: inline-block;
+  animation: term-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes term-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-caret {
+    animation: none;
+  }
 }
 
 .terminal-caption {

@@ -28,19 +28,33 @@
     or a few lines of Python. Start from a player's name — no MLB IDs to look up,
     no undocumented APIs to learn.
   caption: >-
-    One start, one table. The four-seamer lives in the zone and gets missed when
-    hitters swing at it; the splitter's whole job is to be chased below it, and it
-    was, 57.9% of the time.
-  # TODO: confirm the date and opponent for game 825051 so the block reads as a
-  # specific game rather than stale output.
-  terminal_meta: "Roki Sasaki, game 825051"
-  terminal: |
-    $ mound arsenal "Roki Sasaki" --game 825051
-                        pitches  usage%  strike%  whiff%  chase%  velo  spin    hb   ivb
-    four-seam fastball       35    40.7     57.1    27.3     6.2  98.8  2427  11.2  16.9
-    splitter                 32    37.2     81.2    13.6    57.9  90.2   868   5.3   1.0
-    slider                   14    16.3     57.1    40.0    33.3  87.1  2099   3.0   0.1
-    forkball                  5     5.8     60.0    50.0     0.0  88.2   758   2.8  -2.0
+  # Session shown in the featured card. Rendered as a stepped, typed sequence
+  # where JS and motion allow, and as a plain transcript everywhere else.
+  # Output is verbatim from the installed CLI -- regenerate rather than hand-edit
+  # if the numbers need refreshing, since the column alignment is load-bearing.
+  terminal_meta: "mound — roki sasaki"
+  # The "|2" is required, not stylistic: the arsenal header is indented deeper
+  # than the rows beneath it, so YAML would infer the block's indentation from
+  # that first line and read the rows as a dedent. The indicator pins it.
+  terminal_steps:
+    - cmd: mound search "roki sasaki"
+      out: |2
+        808963	Roki Sasaki	Pitcher	Los Angeles Dodgers
+    - cmd: mound games "roki sasaki" --last 5
+      out: |2
+        Roki Sasaki · 5 game(s)
+              date             opponent       game_pk
+        2026-07-30     Seattle Mariners home   823921
+        2026-08-07 Arizona Diamondbacks away   825051
+        2026-08-13    Milwaukee Brewers home   823915
+        2026-08-19     Colorado Rockies away   824318
+        2026-08-26       Atlanta Braves away   824878
+    - cmd: mound arsenal "roki sasaki" --game 823921
+      out: |2
+                            pitches  usage%  strike%  whiff%  chase%  velo  spin    hb   ivb
+        splitter                 37    41.1     62.2    47.6    48.1  91.1   944   7.4   1.8
+        four-seam fastball       33    36.7     69.7    23.1    26.7  99.1  2364  11.5  15.8
+        slider                   20    22.2     75.0    30.0    37.5  86.8  2042   1.3  -1.9
   url: https://www.moundcli.com
   repo: https://github.com/stiles/mound
   writeup: https://www.moundcli.com/examples/ohtani-spin-chase

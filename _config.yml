@@ -44,6 +44,9 @@ color:
   # paper surfaces too, not just on white.
   primary: 3A7B5E
   primary-deep: 2E6149
+  # For dark surfaces only, where the primary green falls to 3.80:1 and fails AA
+  # at terminal type sizes. This is moundcli's own dark pairing: 10.73:1.
+  primary-bright: 7FD3A8
   secondary: 101828
   secondary-dark: 0A0F1C
 
@@ -69,7 +72,7 @@ address:
   - line: Los Angeles, CA
 
 # Credits content
-credits: 'Made with Jekyll because WordPress is trash'
+credits: ''
 
 # Build settings
 markdown: kramdown

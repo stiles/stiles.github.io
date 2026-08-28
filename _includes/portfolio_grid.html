@@ -30,12 +30,30 @@
         {%- comment -%}
         Wrapped so the panel can shrink to the table's width instead of
         stretching across the card when the layout stacks.
+
+        Every step renders in full here. The script hides them again and plays
+        them back, so with no JS or reduced motion this is simply a transcript.
+        Because the full text is always laid out, revealing it shifts nothing.
         {%- endcomment -%}
         <div class="terminal-block">
-          {% if featured.terminal_meta %}
-          <div class="terminal-meta">{{ featured.terminal_meta }}</div>
-          {% endif %}
-          <pre class="terminal"><code>{{ featured.terminal | escape }}</code></pre>
+          <div class="term-bar">
+            <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            {% if featured.terminal_meta %}
+            <span class="term-title">{{ featured.terminal_meta }}</span>
+            {% endif %}
+            <button type="button" class="term-btn" hidden>
+              {% include icon.html name="skip" size=13 %}
+              <span class="visually-hidden term-btn-label">Skip to the end of the demo</span>
+            </button>
+          </div>
+          <div class="terminal">
+            {%- for step in featured.terminal_steps %}
+            <div class="term-step">
+              <div class="term-cmdline"><span class="term-prompt" aria-hidden="true">❯ </span><span class="term-cmd" data-cmd="{{ step.cmd | escape }}">{{ step.cmd | escape }}</span><span class="term-caret" aria-hidden="true"></span></div>
+              <div class="term-out">{{- step.out | rstrip | escape -}}</div>
+            </div>
+            {%- endfor %}
+          </div>
         </div>
         {% if featured.caption %}
         <p class="terminal-caption">{{ featured.caption }}</p>
