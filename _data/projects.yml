@@ -56,7 +56,7 @@
     GeoParquet.
   img: ezesri
   w: 900
-  h: 506
+  h: 600
   alt: The ezesri web app, with a field for pasting an Esri REST layer URL
   url: https://www.ezesri.com
   repo: https://github.com/stiles/ezesri
@@ -71,7 +71,7 @@
     a pair of coordinates, including historical captures of the same spot.
   img: streetview-dl
   w: 900
-  h: 506
+  h: 600
   alt: Street View panorama of the Sixth Street Viaduct in Los Angeles
   repo: https://github.com/stiles/streetview-dl
   writeup: https://medium.com/@stiles/download-high-resolution-google-street-view-panoramas-in-the-command-line-a800ef16f270
@@ -85,7 +85,7 @@
     flight number, end with a plotted track and a table you can analyze.
   img: pyfr24
   w: 900
-  h: 506
+  h: 600
   alt: A pyfr24 plot tracing a single flight path
   url: https://pyfr24.readthedocs.io
   repo: https://github.com/stiles/pyfr24
@@ -100,7 +100,7 @@
     following one tail number over weeks rather than watching a single flight.
   img: flight-tracer
   w: 900
-  h: 650
+  h: 600
   alt: Map tracing five United Airlines flight paths across the United States
   repo: https://github.com/stiles/flight-tracer
   tools: [Python]
@@ -164,7 +164,7 @@
     to a live dashboard each morning.
   img: dodgersdata
   w: 900
-  h: 650
+  h: 600
   alt: The DodgersData.bot dashboard, showing a run differential chart and the season record
   url: https://dodgersdata.bot
   repo: https://github.com/stiles/dodgers
@@ -186,7 +186,7 @@
     can map a company's footprint without asking the company for its data.
   img: locations2
   w: 900
-  h: 650
+  h: 600
   alt: Dot density map of the United States showing thousands of retail locations
   repo: https://github.com/stiles/locations
   tools: [Python, web scraping]
@@ -198,8 +198,8 @@
     reporting district and neighborhood, so you can see which parts of the city
     get flown over and how often.
   img: lapd-choppers
-  w: 800
-  h: 450
+  w: 900
+  h: 600
   alt: An LAPD helicopter over the Los Angeles skyline
   repo: https://github.com/stiles/lapd-choppers
   tools: [Python, GIS]
@@ -222,7 +222,7 @@
     municipalities, collected from dozens of separate agencies and put on one map.
   img: jacarandamap
   w: 900
-  h: 650
+  h: 600
   alt: Map of central Los Angeles with purple dots marking jacaranda trees
   url: https://jacarandamap.com
   repo: https://github.com/stiles/la-trees
@@ -235,7 +235,7 @@
     which are rare, and why the pattern is stranger than you'd guess.
   img: birthdayrank
   w: 900
-  h: 506
+  h: 600
   alt: Calendar heat map of US birth frequency for every day of the year
   url: https://birthdayrank.com
   repo: https://github.com/stiles/birthdays
@@ -248,7 +248,7 @@
     council district, school zone and the rest of the overlapping boundaries.
   img: whatsmyla
   w: 900
-  h: 506
+  h: 600
   alt: The What's My LA home page, with an address search field
   url: https://www.whatsmyla.com
   repo: https://github.com/stiles/whats-my-la
