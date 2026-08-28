@@ -21,6 +21,11 @@ list as one sentence and never hears the animation.
         </span>
       </h1>
 
+      <button type="button" class="hats-toggle" hidden>
+        {% include icon.html name="pause" size=12 %}
+        <span class="visually-hidden hats-toggle-label">Pause the headline animation</span>
+      </button>
+
       <p class="hero-sub">{{ site.skills }}</p>
       <div class="hero-actions">
         <a href="#portfolio" class="btn btn-solid">View projects</a>

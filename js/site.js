@@ -37,32 +37,98 @@
 
   /* Hero headline phrases.
    *
-   * Runs one pass and stops on the last phrase. That isn't only an editorial
-   * choice -- it's what lets the hero skip a pause button. WCAG 2.2.2 wants a
-   * stop mechanism for anything that either moves for more than five seconds or
-   * auto-updates at all, and an endless loop trips both. One finite pass with a
-   * pure cross-fade (no travel, see style.css) trips neither: nothing moves,
-   * and the updating ends rather than continuing under the visitor.
+   * Cycles indefinitely, which is why the pause button exists. WCAG 2.2.2 gives
+   * moving content a five-second grace period but gives auto-updating content
+   * none: text that changes on its own, forever, alongside other content needs
+   * a mechanism to pause, stop or hide it. prefers-reduced-motion and
+   * pause-on-hover don't satisfy that, since neither is a persistent control.
+   * The transition is still a pure cross-fade with no travel, so the moving
+   * clause stays out of it entirely.
    *
    * Progressive enhancement: the markup is a stacked list of all four phrases,
    * which is what shows with no JS or with reduced motion. Only here do they
    * collapse onto one line. */
   var hats = document.querySelector(".hero-hats");
+  var hatsToggle = document.querySelector(".hats-toggle");
   var calmer = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (hats) {
+  if (hats && hatsToggle) {
     var phrases = hats.querySelectorAll(".hat");
+    var label = hatsToggle.querySelector(".hats-toggle-label");
+    var PAUSE_ICON =
+      '<rect x="7" y="5" width="3.6" height="14" rx="1"></rect>' +
+      '<rect x="13.4" y="5" width="3.6" height="14" rx="1"></rect>';
+    var PLAY_ICON =
+      '<path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l10.3-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14z"></path>';
+
+    var timer = null;
+    var at = 0;
+    var userPaused = false;
+    var hovering = false;
+    var offscreen = false;
+
+    var advance = function () {
+      phrases[at].classList.remove("is-current");
+      at = (at + 1) % phrases.length;
+      phrases[at].classList.add("is-current");
+    };
+
+    /* Three things can stop the cycle, but only the button should relabel it,
+     * so one function owns the timer and the button reports userPaused alone.
+     * Otherwise hovering would leave the control claiming a state the visitor
+     * never chose. */
+    var refresh = function () {
+      var run = !userPaused && !hovering && !offscreen;
+      if (run && !timer) timer = window.setInterval(advance, 3400);
+      if (!run && timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+      label.textContent = userPaused
+        ? "Play the headline animation"
+        : "Pause the headline animation";
+      var svg = hatsToggle.querySelector("svg");
+      if (svg) svg.innerHTML = userPaused ? PLAY_ICON : PAUSE_ICON;
+    };
 
     if (phrases.length > 1 && !calmer.matches) {
       hats.classList.add("is-live");
+      hatsToggle.hidden = false;
+      refresh();
 
-      var at = 0;
-      var timer = window.setInterval(function () {
-        phrases[at].classList.remove("is-current");
-        at += 1;
-        phrases[at].classList.add("is-current");
-        if (at === phrases.length - 1) window.clearInterval(timer);
-      }, 2600);
+      hatsToggle.addEventListener("click", function () {
+        userPaused = !userPaused;
+        refresh();
+      });
+
+      /* Courtesies, not the required control: hold while a visitor is reading
+       * the hero, and don't animate to an empty room once it's scrolled past. */
+      var hero = hats.closest(".hero");
+      var setHover = function (state) {
+        return function () {
+          hovering = state;
+          refresh();
+        };
+      };
+      hero.addEventListener("mouseenter", setHover(true));
+      hero.addEventListener("mouseleave", setHover(false));
+      hero.addEventListener("focusin", setHover(true));
+      hero.addEventListener("focusout", setHover(false));
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          offscreen = !entries[0].isIntersecting;
+          refresh();
+        }).observe(hats);
+      }
+
+      calmer.addEventListener("change", function (event) {
+        if (!event.matches) return;
+        userPaused = true;
+        refresh();
+        hats.classList.remove("is-live");
+        hatsToggle.hidden = true;
+      });
     }
   }
 
