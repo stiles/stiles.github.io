@@ -155,6 +155,17 @@
   repo: https://github.com/stiles/notebooks
   tools: [Python, Jupyter, pandas]
 
+# The package was renamed from scorebug, which is still on PyPI at an older
+# version. Install line follows the current name.
+- title: Utilityman
+  bucket: other-people-use
+  install: pip install utilityman
+  blurb: >-
+    Follows a live MLB game in your terminal — play-by-play, a compact scoreboard
+    and scoring plays as they happen — without opening a browser.
+  repo: https://github.com/stiles/utilityman
+  tools: [Python, CLI]
+
 # ------------------------------------------------ things that run themselves
 - title: DodgersData.bot
   bucket: runs-itself
@@ -213,6 +224,15 @@
   # TODO: one card for two repos. Second repo is stiles/north-korea-news.
   repo: https://github.com/stiles/north-korea-provocations
   tools: [Python]
+
+- title: survivoR2py
+  bucket: runs-itself
+  blurb: >-
+    Converts an R-only archive of every Survivor castaway, challenge and vote
+    into CSV and JSON on a daily schedule, so the show's full record is usable
+    without knowing R.
+  repo: https://github.com/stiles/survivoR2py
+  tools: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
 - title: JacarandaMap
