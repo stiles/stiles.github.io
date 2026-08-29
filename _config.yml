@@ -10,6 +10,7 @@ home: "I'm a journalist who"
 # phrased verb-plus-plural-noun so they stay parallel.
 hats:
   - writes stories
+  - analyzes data
   - leads teams
   - creates visuals
   - builds software

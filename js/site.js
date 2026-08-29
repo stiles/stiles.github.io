@@ -74,7 +74,7 @@
      * than each handler starting and stopping it behind the other's back. */
     var refresh = function () {
       var run = !hovering && !offscreen;
-      if (run && !timer) timer = window.setInterval(advance, 3400);
+      if (run && !timer) timer = window.setInterval(advance, 2400);
       if (!run && timer) {
         window.clearInterval(timer);
         timer = null;
