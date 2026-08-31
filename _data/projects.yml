@@ -258,7 +258,7 @@
   domain: Retail
   built: [Python, GeoPandas]
 
-- title: LAPD Choppers
+- title: LAPD choppers
   bucket: runs-itself
   blurb: >-
     Tracks LAPD helicopter flights and maps patrol intensity by division,
@@ -305,7 +305,7 @@
   built: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
-- title: JacarandaMap
+- title: JacarandaMap.com
   bucket: click-on
   blurb: >-
     I've collected more than 1.6 million geocoded street trees across 40-plus Los Angeles-area municipalities from dozens of separate agencies. I put the iconic purple ones on this map.
@@ -319,7 +319,7 @@
   domain: Los Angeles
   built: [Mapbox GL, Python]
 
-- title: BirthdayRank
+- title: BirthdayRank.com
   bucket: click-on
   blurb: >-
     An interactive look at which birthdays are common in the United States and
@@ -334,7 +334,7 @@
   domain: Demographics
   built: [Svelte, D3]
 
-- title: What's My LA
+- title: WhatsMyLA.com
   bucket: click-on
   blurb: >-
     Type an address and see which Los Angeles you actually live in — neighborhood,
