@@ -74,6 +74,49 @@
   domain: Baseball
   built: [Python, CLI, matplotlib]
 
+# ------------------------------------------------------------- things at CNN
+- title: CNN visuals and data stories
+  bucket: cnn
+  blurb: >-
+    A running collection of my data-driven stories, graphics and news
+    applications at CNN.
+  img: cnn-work
+  w: 1024
+  h: 576
+  alt: Matt Stiles's CNN profile page showing a list of recent visual stories
+  url: https://www.cnn.com/profiles/matt-stiles
+  does: [Data viz, Analysis]
+  domain: Journalism
+
+- title: Bot Index
+  bucket: cnn
+  blurb: >-
+    I conceived and built a searchable internal catalog connecting 100 newsroom
+    data pipelines with 120 live charts and 37 trackers. Its inventory updates
+    automatically each day.
+  img: bot-index
+  w: 1024
+  h: 650
+  alt: Bot Index dashboard showing searchable cards for automated CNN data pipelines
+  note: Internal CNN tool
+  does: [Reference]
+  domain: Newsroom tools
+
+- title: CNN Visuals Cronbot
+  bucket: cnn
+  blurb: >-
+    I own a collection of around 100 automated scripts that fetch and process
+    data for CNN Visuals. They run on schedules in GitHub Actions, publish
+    processed data to S3 and send status notifications to Slack.
+  img: cnn-cronbot
+  w: 1024
+  h: 576
+  alt: CNN Visuals Cronbot repository README describing its automated data pipelines
+  note: Internal CNN system
+  does: [Data extraction]
+  domain: Newsroom tools
+  built: [Python, GitHub Actions, AWS S3, Slack]
+
 # ------------------------------------------------- things other people use
 - title: ezesri
   bucket: other-people-use
@@ -305,6 +348,49 @@
   built: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
+- title: Their names fit
+  bucket: click-on
+  blurb: >-
+    A reported register of 695 aptronyms: people whose names suit their work
+    unusually well, from sprinter Usain Bolt to golfer Tiger Woods and vodka
+    maker Bert Beveridge.
+  img: their-names-fit
+  w: 1024
+  h: 576
+  alt: Their names fit register showing people whose names match their work
+  url: https://www.theirnames.fit/
+  does: [Reference]
+  domain: Names
+
+- title: Onion History
+  bucket: click-on
+  blurb: >-
+    An automated archive of more than 35,000 headlines from The Onion,
+    including "Supreme Court Votes 5-4 To Take Child Bride."
+  img: onion-history
+  w: 1024
+  h: 576
+  alt: Onion History homepage with options to browse a random headline or a date
+  url: https://www.onionhistory.com/
+  does: [Reference, Data extraction]
+  domain: Satire
+
+- title: The Daily Viz
+  bucket: click-on
+  blurb: >-
+    My retired digital sketchpad for creating and curating charts, maps and
+    other data stories. Posting there helped me move from reporting into data
+    visualization and visuals editing.
+  img: daily-viz
+  w: 1024
+  h: 576
+  alt: The Daily Viz archive showing an article about Donald Trump's tweets
+  url: https://thedailyviz.com/
+  note: Retired
+  does: [Data viz, Analysis]
+  domain: Journalism
+  built: [Jekyll]
+
 - title: JacarandaMap.com
   bucket: click-on
   blurb: >-

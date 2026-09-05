@@ -3,21 +3,22 @@ title: Matt Stiles
 # Suffixed to the site title for the browser tab, search results and share
 # cards. Keeps "data journalist" because people search that phrase, even though
 # the on-page copy has moved past it.
-tagline: "Data journalist and software builder"
+tagline: "Data tools, visual stories and technical leadership"
 domain: mattstiles.me
 home: "I'm a journalist who"
-# Cycled in the hero. Kept similar in length so the line doesn't jump, and
-# phrased verb-plus-plural-noun so they stay parallel.
+# Cycled in the hero. Each phrase completes the lead above and stays close in
+# length to limit movement as the text changes.
 hats:
-  - writes stories
-  - analyzes data
-  - leads teams
-  - creates visuals
-  - builds software
+  - builds data tools
+  - leads technical teams
+  - creates visual stories
+  - automates live coverage
 email: mattstiles@gmail.com
 url: https://mattstiles.me
-description: "Matt Stiles is a senior editor on CNN's visuals team who tells stories with data and builds open-source tools for reporting."
-skills: "Two decades of data and visual storytelling in newsrooms. I also build open-source tools that help people find and make sense of data."
+description: "Matt Stiles is a senior data and graphics editor at CNN who builds data tools, leads technical teams and develops visual stories."
+skills: >-
+  Senior data and graphics editor at CNN. I build systems that automate
+  coverage and help teams turn difficult data into clear stories.
 meta_author: Matt Stiles
 
 # Google webmaster tools
@@ -93,6 +94,7 @@ exclude:
   - freelancer-theme-jekyll.gemspec
   - img/raw
   - mail
+  - private
   - vendor
   - .bundle
 

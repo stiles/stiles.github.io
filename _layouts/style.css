@@ -557,8 +557,15 @@ section {
 .work-card {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
+  padding: 0;
+  color: inherit;
+  text-align: left;
   text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 
 /* Fixed 3:2 well, so mixed source aspect ratios still line up in a row. */
@@ -1258,6 +1265,198 @@ section {
 
 .page-content p {
   max-width: var(--measure);
+}
+
+/* ------------------------------------------------------------- resume page */
+
+.resume-page {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.resume-header {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.resume-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.resume-header h1 {
+  margin-bottom: 0.3rem;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  letter-spacing: -0.035em;
+}
+
+.resume-deck {
+  margin-bottom: 1.25rem;
+  font-size: var(--step-2);
+  line-height: 1.4;
+  color: var(--text-soft);
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.resume-contact a {
+  font-weight: 550;
+}
+
+.resume-section {
+  padding: 2.5rem 0 0;
+}
+
+.resume-section > h2,
+.resume-details h2 {
+  margin-bottom: 1.25rem;
+  font-size: var(--step-2);
+}
+
+.resume-summary {
+  margin: 0;
+  font-size: var(--step-1);
+  line-height: 1.75;
+}
+
+.resume-role {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.resume-role:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.resume-role-head {
+  margin-bottom: 0.8rem;
+}
+
+.resume-role h3 {
+  margin: 0;
+  font-size: var(--step-1);
+}
+
+.resume-role-title,
+.resume-date {
+  margin: 0;
+}
+
+.resume-role-title {
+  font-weight: 550;
+  color: var(--text);
+}
+
+.resume-date {
+  font-size: 0.9375rem;
+  color: var(--text-faint);
+}
+
+.resume-role ul {
+  max-width: var(--measure);
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.resume-role li + li {
+  margin-top: 0.65rem;
+}
+
+.resume-projects {
+  display: grid;
+  gap: 1rem;
+}
+
+.resume-projects > div {
+  padding: 1.25rem;
+  background-color: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+.resume-projects h3 {
+  margin-bottom: 0.4rem;
+  font-size: var(--step-1);
+}
+
+.resume-projects p,
+.resume-details p {
+  margin: 0;
+}
+
+.resume-details {
+  display: grid;
+  gap: 2rem;
+}
+
+.resume-details h2 {
+  margin-bottom: 0.6rem;
+}
+
+.resume-back {
+  margin: 3rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule-strong);
+  font-weight: 600;
+}
+
+@media (min-width: 700px) {
+  .resume-role-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .resume-date {
+    text-align: right;
+  }
+
+  .resume-projects,
+  .resume-details {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  .site-nav,
+  .site-footer,
+  .resume-back {
+    display: none;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .resume-role,
+  .resume-projects > div,
+  .resume-details > div {
+    break-inside: avoid;
+  }
+
+  .resume-projects > div {
+    padding: 0;
+    border: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

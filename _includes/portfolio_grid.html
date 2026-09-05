@@ -73,10 +73,14 @@
       {% for project in ordered %}
       {%- assign slug = project.title | slugify -%}
       {%- comment -%}
-      A real link, so a click still goes somewhere useful without JS. The script
-      intercepts it and opens the dialog instead.
+      Public projects use a real link as a no-JS fallback. Internal projects use
+      a button because they have no public destination.
       {%- endcomment -%}
+      {% if project.url or project.repo %}
       <a class="work-card" href="{{ project.url | default: project.repo }}" data-dialog="{{ slug }}">
+      {% else %}
+      <button type="button" class="work-card" data-dialog="{{ slug }}">
+      {% endif %}
         {% if project.img %}
         <div class="work-thumb">
           {% include picture.html img=project.img alt=project.alt w=project.w h=project.h lazy=true %}
@@ -99,7 +103,11 @@
           </div>
         </div>
         {% endif %}
+      {% if project.url or project.repo %}
       </a>
+      {% else %}
+      </button>
+      {% endif %}
       {% endfor %}
     </div>
     {% endif %}

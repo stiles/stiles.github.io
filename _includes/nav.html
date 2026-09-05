@@ -1,6 +1,10 @@
+{%- assign home_prefix = '/' | relative_url -%}
+{%- if page.url == '/' -%}
+  {%- assign home_prefix = '' -%}
+{%- endif -%}
 <nav class="site-nav">
   <div class="container">
-    <a class="nav-brand" href="#page-top">
+    <a class="nav-brand" href="{{ home_prefix }}#page-top">
       <img class="nav-avatar" src="{{ '/img/profile.png' | relative_url }}" alt="" width="30" height="30">
       <span>{{ site.title }}</span>
     </a>
@@ -11,9 +15,9 @@
     </button>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="#portfolio">Projects</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="{{ home_prefix }}#portfolio">Projects</a></li>
+      <li><a href="{{ home_prefix }}#about">About</a></li>
+      <li><a href="{{ home_prefix }}#contact">Contact</a></li>
     </ul>
   </div>
 </nav>

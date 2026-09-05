@@ -269,8 +269,8 @@
 
   /* Project dialogs.
    *
-   * Each card is a real link to the project, so without JS a click still goes
-   * somewhere useful. With JS we intercept and open the dialog instead. */
+   * Public project cards keep a real link as a no-JS fallback. Internal
+   * projects use buttons because they have no public destination. */
   var supportsDialog = typeof HTMLDialogElement === "function";
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-dialog]"), function (trigger) {
