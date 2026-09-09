@@ -348,7 +348,7 @@
   built: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
-- title: Their names fit
+- title: Their Names Fit
   bucket: click-on
   blurb: >-
     A reported register of 695 aptronyms: people whose names suit their work
@@ -375,23 +375,21 @@
   does: [Reference, Data extraction]
   domain: Satire
 
-- title: The Daily Viz
+- title: Feels Like LA
   bucket: click-on
   blurb: >-
-    My retired digital sketchpad for creating and curating charts, maps and
-    other data stories. Posting there helped me move from reporting into data
-    visualization and visuals editing.
-  img: daily-viz
+    Beautifully rendered and auto-generated hourly "feels like" temperatures for every neighborhood in Los Angeles.
+  img: feelslike.la
   w: 1024
   h: 576
-  alt: The Daily Viz archive showing an article about Donald Trump's tweets
-  url: https://thedailyviz.com/
-  note: Retired
-  does: [Data viz, Analysis]
-  domain: Journalism
-  built: [Jekyll]
+  alt: 
+  url: https://feelslike.la/
+  note: 
+  does: [Data viz, weather]
+  domain: Los Angeles
+  built: [Python, TypeScript, Mapbox GL]
 
-- title: JacarandaMap.com
+- title: Jacaranda Map
   bucket: click-on
   blurb: >-
     I've collected more than 1.6 million geocoded street trees across 40-plus Los Angeles-area municipalities from dozens of separate agencies. I put the iconic purple ones on this map.
@@ -405,7 +403,7 @@
   domain: Los Angeles
   built: [Mapbox GL, Python]
 
-- title: BirthdayRank.com
+- title: Birthday Rank
   bucket: click-on
   blurb: >-
     An interactive look at which birthdays are common in the United States and
@@ -420,7 +418,7 @@
   domain: Demographics
   built: [Svelte, D3]
 
-- title: WhatsMyLA.com
+- title: Whats My LA
   bucket: click-on
   blurb: >-
     Type an address and see which Los Angeles you actually live in — neighborhood,
