@@ -1,7 +1,6 @@
 # mattstiles.me
 
-Personal portfolio site for Matt Stiles, a data journalist and software
-builder.
+A personal portfolio site for Matt Stiles. 
 
 [View the live site](https://mattstiles.me/)
 
