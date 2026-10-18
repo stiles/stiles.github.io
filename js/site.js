@@ -113,6 +113,25 @@
     }
   }
 
+  /* Featured video demo.
+   *
+   * Autoplay/loop/muted are set in markup so no-JS still gets the loop --
+   * that's what playsinline is for. The one thing JS must do is stop it for
+   * prefers-reduced-motion, since there's no attribute for that. */
+  var featuredVideo = document.querySelector(".featured-video");
+
+  if (featuredVideo) {
+    var stopForReducedMotion = function () {
+      featuredVideo.pause();
+      featuredVideo.removeAttribute("autoplay");
+      featuredVideo.currentTime = 0;
+    };
+    if (calmer.matches) stopForReducedMotion();
+    calmer.addEventListener("change", function (event) {
+      if (event.matches) stopForReducedMotion();
+    });
+  }
+
   /* Featured terminal demo.
    *
    * The transcript is rendered in full by Jekyll, so with no JS or with reduced

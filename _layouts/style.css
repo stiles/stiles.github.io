@@ -767,6 +767,33 @@ section {
   max-width: 100%;
 }
 
+/* Same chrome as .terminal-block, around a looping screen recording instead
+   of a typed transcript. */
+.video-block {
+  width: 100%;
+  max-width: 100%;
+}
+
+.video-block .term-bar {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.featured-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background-color: var(--ink-deep);
+}
+
+.video-block .term-bar + .featured-video {
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+
+.video-block:has(> .featured-video:only-child) .featured-video {
+  border-radius: var(--radius);
+}
+
 .term-bar {
   display: flex;
   align-items: center;

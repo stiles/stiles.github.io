@@ -31,6 +31,29 @@
         them back, so with no JS or reduced motion this is simply a transcript.
         Because the full text is always laid out, revealing it shifts nothing.
         {%- endcomment -%}
+        {% if featured.video_mp4 %}
+        {%- comment -%}
+        A silent, looping screen recording. prefers-reduced-motion and no-JS
+        both fall back to the poster frame, since autoplay is the only thing
+        `loop` and `muted` are doing here -- there's no content lost by
+        showing one still instead.
+        {%- endcomment -%}
+        <div class="video-block">
+          {% if featured.terminal_meta %}
+          <div class="term-bar">
+            <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="term-title">{{ featured.terminal_meta }}</span>
+          </div>
+          {% endif %}
+          <video class="featured-video" autoplay loop muted playsinline
+            poster="{{ featured.video_poster | append: '.jpg' | prepend: '/img/portfolio/' | relative_url }}"
+            width="{{ featured.w }}" height="{{ featured.h }}"
+            aria-label="{{ featured.video_alt | default: featured.title }}">
+            <source src="{{ featured.video_webm | relative_url }}" type="video/webm">
+            <source src="{{ featured.video_mp4 | relative_url }}" type="video/mp4">
+          </video>
+        </div>
+        {% else %}
         <div class="terminal-block">
           <div class="term-bar">
             <span class="term-dots" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -51,6 +74,7 @@
             {%- endfor %}
           </div>
         </div>
+        {% endif %}
         {% if featured.caption %}
         <p class="terminal-caption">{{ featured.caption }}</p>
         {% endif %}

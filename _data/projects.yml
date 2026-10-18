@@ -31,48 +31,29 @@
 #               rather than assumed, so keep it that way when editing.
 
 # ---------------------------------------------------------------- featured
-- title: Mound
+- title: Airspace
   featured: true
   bucket: other-people-use
-  install: pip install mound
   blurb: >-
-    Retrieves, analyzes and visualizes MLB pitch-level data from the command line
-    or a few lines of Python. Start from a player's name — no MLB IDs to look up,
-    no undocumented APIs to learn.
+    Tracks live aircraft near a specified location on a radar-style map, identifying police,
+    fire and news helicopters and tagging the ones circling, hovering or flying low.
   caption: >-
-  # Session shown in the featured card. Rendered as a stepped, typed sequence
-  # where JS and motion allow, and as a plain transcript everywhere else.
-  # Output is verbatim from the installed CLI -- regenerate rather than hand-edit
-  # if the numbers need refreshing, since the column alignment is load-bearing.
-  terminal_meta: "mound — roki sasaki"
-  # The "|2" is required, not stylistic: the arsenal header is indented deeper
-  # than the rows beneath it, so YAML would infer the block's indentation from
-  # that first line and read the rows as a dedent. The indicator pins it.
-  terminal_steps:
-    - cmd: mound search "roki sasaki"
-      out: |2
-        808963	Roki Sasaki	Pitcher	Los Angeles Dodgers
-    - cmd: mound games "roki sasaki" --last 5
-      out: |2
-        Roki Sasaki · 5 game(s)
-              date             opponent       game_pk
-        2026-07-30     Seattle Mariners home   823921
-        2026-08-07 Arizona Diamondbacks away   825051
-        2026-08-13    Milwaukee Brewers home   823915
-        2026-08-19     Colorado Rockies away   824318
-        2026-08-26       Atlanta Braves away   824878
-    - cmd: mound arsenal "roki sasaki" --game 823921
-      out: |2
-                            pitches  usage%  strike%  whiff%  chase%  velo  spin    hb   ivb
-        splitter                 37    41.1     62.2    47.6    48.1  91.1   944   7.4   1.8
-        four-seam fastball       33    36.7     69.7    23.1    26.7  99.1  2364  11.5  15.8
-        slider                   20    22.2     75.0    30.0    37.5  86.8  2042   1.3  -1.9
-  url: https://www.moundcli.com
-  repo: https://github.com/stiles/mound
-  writeup: https://www.moundcli.com/examples/ohtani-spin-chase
-  does: [Data extraction, Analysis, Data viz]
-  domain: Baseball
-  built: [Python, CLI, matplotlib]
+    Replay of an overnight recording over West LA, sped up: an LAPD helicopter
+    works down the coast from Santa Monica and swings into a turn over Marina
+    del Rey while jets come and go at LAX.
+  terminal_meta: "Airspace"
+  video_mp4: /img/portfolio/video/airspace-loop.mp4
+  video_webm: /img/portfolio/video/airspace-loop.webm
+  video_poster: airspace-poster
+  video_alt: >-
+    A radar-style dark map centered on a West Los Angeles home point, showing
+    aircraft as green trails and a helicopter circling in amber
+  w: 1280
+  h: 790
+  repo: https://github.com/stiles/airspace
+  does: [Data extraction, Mapping, Analysis]
+  domain: Aviation
+  built: [Python, Svelte, Mapbox GL]
 
 # ------------------------------------------------------------- things at CNN
 - title: CNN visuals and data stories
@@ -151,6 +132,20 @@
   does: [Data extraction]
   built: [Python, CLI]
 
+- title: chorokit
+  bucket: other-people-use
+  install: pip install chorokit
+  blurb: >-
+    Makes a clean choropleth in a few lines, with defaults for projection, layout
+    and legend chosen so the map is publishable on the first render.
+  img: chorokit
+  w: 900
+  h: 600
+  alt: County-level choropleth map of farmland as a share of county land area, densest across the Plains
+  repo: https://github.com/stiles/chorokit
+  does: [Data viz, Mapping]
+  built: [Python, matplotlib, GeoPandas]
+
 - title: pyfr24
   bucket: other-people-use
   install: pip install pyfr24
@@ -183,20 +178,6 @@
   domain: Aviation
   built: [Python]
 
-- title: chorokit
-  bucket: other-people-use
-  install: pip install chorokit
-  blurb: >-
-    Makes a clean choropleth in a few lines, with defaults for projection, layout
-    and legend chosen so the map is publishable on the first render.
-  img: chorokit
-  w: 900
-  h: 600
-  alt: County-level choropleth map of farmland as a share of county land area, densest across the Plains
-  repo: https://github.com/stiles/chorokit
-  does: [Data viz, Mapping]
-  built: [Python, matplotlib, GeoPandas]
-
 - title: hangarbay
   bucket: other-people-use
   install: pip install hangarbay
@@ -212,18 +193,51 @@
   domain: Aviation
   built: [Python, CLI]
 
-- title: chartfeed
+- title: Mound
   bucket: other-people-use
+  install: pip install mound
   blurb: >-
-    A responsive gallery of your Datawrapper charts that rebuilds itself every day
-    through GitHub Actions.
-  img: chartfeed
+    Turns a player's name into MLB pitch-level tables and charts, from the
+    command line or a few lines of Python. No IDs needed.
+  img: mound
   w: 900
   h: 600
-  alt: The Chartfeed gallery, with a search box and category filters above a dark grid of chart thumbnails
-  repo: https://github.com/stiles/chartfeed
-  does: [Data viz]
-  built: [Svelte, GitHub Actions]
+  alt: The mound.cli brand card, reading "Understand every pitch" over a strike-zone pitch plot
+  url: https://www.moundcli.com
+  repo: https://github.com/stiles/mound
+  writeup: https://www.moundcli.com/examples/ohtani-spin-chase
+  does: [Data extraction, Analysis, Data viz]
+  domain: Baseball
+  built: [Python, CLI, matplotlib]
+
+# - title: utilityman
+#   bucket: other-people-use
+#   install: pip install utilityman
+#   blurb: >-
+#     Follows a live MLB game in your terminal — play-by-play, a compact scoreboard
+#     and scoring plays as they happen — without opening a browser.
+#   img: utilityman
+#   w: 900
+#   h: 600
+#   alt: Terminal output from a utilityman game, showing the play-by-play, a compact scoreboard and scoring plays as they happen
+#   repo: https://github.com/stiles/utilityman
+#   does: [Data extraction]
+#   domain: Baseball
+#   built: [Python, CLI]
+
+- title: Locations
+  bucket: other-people-use
+  blurb: >-
+    Scrapers that gather store and restaurant locations for major US chains, so you
+    can map a company's footprint without asking the company for its data.
+  img: locations2
+  w: 900
+  h: 600
+  alt: Dot density map of the United States showing thousands of retail locations
+  repo: https://github.com/stiles/locations
+  does: [Data extraction, Mapping]
+  domain: Retail
+  built: [Python, GeoPandas]
 
 - title: notebooks
   bucket: other-people-use
@@ -237,23 +251,6 @@
   repo: https://github.com/stiles/notebooks
   does: [Reference, Analysis]
   built: [Python, Jupyter, pandas]
-
-# The package was renamed from scorebug, which is still on PyPI at an older
-# version. Install line follows the current name.
-- title: utilityman
-  bucket: other-people-use
-  install: pip install utilityman
-  blurb: >-
-    Follows a live MLB game in your terminal — play-by-play, a compact scoreboard
-    and scoring plays as they happen — without opening a browser.
-  img: utilityman
-  w: 900
-  h: 600
-  alt: Terminal output from a utilityman game, showing the play-by-play, a compact scoreboard and scoring plays as they happen
-  repo: https://github.com/stiles/utilityman
-  does: [Data extraction]
-  domain: Baseball
-  built: [Python, CLI]
 
 # ------------------------------------------------ things that run themselves
 - title: DodgersData.bot
@@ -287,26 +284,11 @@
   domain: Politics
   built: [Python]
 
-- title: Locations
-  bucket: runs-itself
-  blurb: >-
-    Scrapers that gather store and restaurant locations for major US chains, so you
-    can map a company's footprint without asking the company for its data.
-  img: locations2
-  w: 900
-  h: 600
-  alt: Dot density map of the United States showing thousands of retail locations
-  repo: https://github.com/stiles/locations
-  does: [Data extraction, Mapping]
-  domain: Retail
-  built: [Python, GeoPandas]
-
 - title: LAPD choppers
   bucket: runs-itself
   blurb: >-
-    Tracks LAPD helicopter flights and maps patrol intensity by division,
-    reporting district and neighborhood, so you can see which parts of the city
-    get flown over and how often.
+    Tracks LAPD helicopter flights and maps how often they fly over each
+    division, reporting district and neighborhood.
   img: lapd-choppers
   w: 900
   h: 600
@@ -319,9 +301,9 @@
 - title: North Korea trackers
   bucket: runs-itself
   blurb: >-
-    Two pipelines running side by side: one archives hundreds of provocative
-    actions, from missile launches to nuclear tests, and the other scrapes state
-    media headlines as they publish.
+    One pipeline archives hundreds of North Korean provocations, from missile
+    launches to nuclear tests; the other scrapes state media headlines as they
+    publish.
   img: north-korea
   w: 900
   h: 600
@@ -331,6 +313,19 @@
   does: [Data extraction]
   domain: Foreign affairs
   built: [Python]
+
+- title: chartfeed
+  bucket: runs-itself
+  blurb: >-
+    A responsive gallery of your Datawrapper charts that rebuilds itself every day
+    through GitHub Actions.
+  img: chartfeed
+  w: 900
+  h: 600
+  alt: The Chartfeed gallery, with a search box and category filters above a dark grid of chart thumbnails
+  repo: https://github.com/stiles/chartfeed
+  does: [Data viz]
+  built: [Svelte, GitHub Actions]
 
 - title: survivoR2py
   bucket: runs-itself
@@ -348,19 +343,19 @@
   built: [Python, GitHub Actions]
 
 # ------------------------------------------------------- things to click on
-- title: Their Names Fit
-  bucket: click-on
-  blurb: >-
-    A reported register of 695 aptronyms: people whose names suit their work
-    unusually well, from sprinter Usain Bolt to golfer Tiger Woods and vodka
-    maker Bert Beveridge.
-  img: their-names-fit
-  w: 1024
-  h: 576
-  alt: Their names fit register showing people whose names match their work
-  url: https://www.theirnames.fit/
-  does: [Reference]
-  domain: Names
+# - title: Their Names Fit
+#   bucket: click-on
+#   blurb: >-
+#     A reported register of 695 aptronyms: people whose names suit their work
+#     unusually well, from sprinter Usain Bolt to golfer Tiger Woods and vodka
+#     maker Bert Beveridge.
+#   img: their-names-fit
+#   w: 1024
+#   h: 576
+#   alt: Their names fit register showing people whose names match their work
+#   url: https://www.theirnames.fit/
+#   does: [Reference]
+#   domain: Names
 
 - title: Onion History
   bucket: click-on
@@ -378,7 +373,8 @@
 - title: Feels Like LA
   bucket: click-on
   blurb: >-
-    Beautifully rendered and auto-generated hourly "feels like" temperatures for every neighborhood in Los Angeles.
+    Hourly "feels like" temperatures for every neighborhood in Los Angeles,
+    updated automatically.
   img: feelslike.la
   w: 1024
   h: 576
@@ -392,7 +388,8 @@
 - title: Jacaranda Map
   bucket: click-on
   blurb: >-
-    I've collected more than 1.6 million geocoded street trees across 40-plus Los Angeles-area municipalities from dozens of separate agencies. I put the iconic purple ones on this map.
+    Maps LA's jacarandas, drawn from more than 1.6 million street trees I
+    gathered from dozens of agencies in 40-plus Los Angeles-area cities.
   img: jacarandamap
   w: 900
   h: 600
@@ -406,8 +403,8 @@
 - title: Birthday Rank
   bucket: click-on
   blurb: >-
-    An interactive look at which birthdays are common in the United States and
-    which are rare, and why the pattern is stranger than you'd guess.
+    Ranks every day of the year by how many Americans are born on it. September
+    is crowded; Christmas and New Year's are nearly empty.
   img: birthdayrank
   w: 900
   h: 600
@@ -417,6 +414,19 @@
   does: [Data viz]
   domain: Demographics
   built: [Svelte, D3]
+
+- title: LA Speed Cameras
+  bucket: click-on
+  blurb: >-
+    Maps all 246 of LA's new automated speed cameras, searchable by
+    neighborhood, street or commute ahead of their Oct. 26 activation.
+  img: lastreetcameras
+  w: 1024
+  h: 630
+  alt: LA Speed Cameras site showing a map of camera locations across Los Angeles
+  url: https://lastreetcameras.com
+  does: [Mapping, Reference]
+  domain: Los Angeles
 
 - title: Whats My LA
   bucket: click-on
