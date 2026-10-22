@@ -420,11 +420,11 @@
   blurb: >-
     Maps all 246 of LA's new automated speed cameras, searchable by
     neighborhood, street or commute ahead of their Oct. 26 activation.
-  img: lastreetcameras
+  img: laspeedcameras
   w: 1024
   h: 630
   alt: LA Speed Cameras site showing a map of camera locations across Los Angeles
-  url: https://lastreetcameras.com
+  url: https://laspeedcameras.com/
   does: [Mapping, Reference]
   domain: Los Angeles
 
